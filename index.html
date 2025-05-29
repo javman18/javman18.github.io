@@ -2,49 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Javier Fuente - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900 font-sans">
+<body class="bg-gradient-to-br from-gray-100 to-white text-gray-800 font-sans">
   <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-4xl font-bold mb-4">Javier Fuente</h1>
-    <p class="mb-8">Unity Developer — Portafolio interactivo</p>
+    <!-- Header -->
+    <header class="mb-10 text-center">
+      <h1 class="text-5xl font-extrabold mb-2">Javier Fuente</h1>
+      <p class="text-lg text-gray-600">Unity Game Developer</p>
+    </header>
 
-    <!-- Video -->
-    <div class="mb-8">
-      <h2 class="text-2xl font-semibold mb-2">Video de presentación</h2>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-96" src="https://vimeo.com/1084409482/9acf2a9840?share=copy" frameborder="0" allowfullscreen></iframe>
+    <!-- About Me -->
+    <section id="about" class="mb-12 bg-white shadow-md p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+      <p class="text-gray-700 leading-relaxed">
+        I'm Javier Fuente, a game developer specialized in Unity. I love building interactive experiences that blend design, code, and storytelling.
+        In this portfolio, you’ll find a selection of my most relevant projects — from educational apps to 2D platformers with advanced AI.
+        I have hands-on experience with Addressables, XR Toolkit, DOTween animations, shaders, gameplay logic, and VR development for both educational institutions and personal projects.
+      </p>
+    </section>
+
+    <!-- Demo Reel -->
+    <section id="demo-reel" class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Demo Reel</h2>
+      <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-md">
+        <iframe
+          src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          allowfullscreen
+          title="DemoReel"
+          class="absolute top-0 left-0 w-full h-full">
+        </iframe>
       </div>
-    </div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+    </section>
 
-    <!-- Proyecto con toggle -->
-    <div class="mb-12">
-      <h2 class="text-2xl font-semibold mb-2">Lost Lantern</h2>
-      <button onclick="toggleProject()" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Mostrar / Ocultar Detalles
-      </button>
+    <!-- Projects -->
+    <section id="projects" class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 text-center">Projects</h2>
 
-      <div id="projectContent" class="transition-all duration-300 ease-in-out">
-        <p class="mb-2">2D platformer inspired by Hollow Knight. Main mechanic is a lantern. Enemy AI uses Behavior Trees. All art by me.</p>
-        <pre class="bg-black text-green-200 p-4 overflow-x-auto rounded">
-void Update() {
-    if (enemy.IsPlayerInRange()) {
-        enemy.Chase();
-    } else {
-        enemy.Patrol();
-    }
-}
-        </pre>
-        <a href="#" class="inline-block mt-2 text-blue-600 underline">Ver código en GitHub</a>
-      </div>
-    </div>
+      <!-- Project: Lost Lantern -->
+      <article class="bg-white shadow-md p-6 rounded-xl mb-8">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">RTS Agent Generator</h3>
+            <button onclick="toggleProject('projectContent1')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              Show / Hide Project
+            </button>
+          </div>
+        
+          <div id="projectContent1" class="hidden space-y-4">
+            <p class="text-gray-700">
+              RTS Agent Generator is a Unity-based tool developed as part of my thesis, aimed at designing agents for Real-Time Strategy (RTS) games.  
+              The system focuses on implementing Steering Behaviors and includes both a custom editor and an in-engine editor for agent configuration.  
+              It allows the creation of different types of agents, including resource gatherers, seekers, leaders (using the “Follow the Leader” behavior), and followers.  
+              The tool also features a level creation and saving system, enabling users to build and persist custom RTS scenarios for testing or gameplay purposes.  
+              This provides a flexible way to prototype and test group-based agent behaviors in a modular and reusable workflow.
+            </p>
+        
+            <div class="text-right my-4">
+                <button onclick="toggleProject('imageBlock1')" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
+                  Show / Hide Images
+                </button>
+              </div>
+              
+              <!-- Imágenes ocultas inicialmente -->
+              <div id="imageBlock1" class="hidden space-y-6">
+                <div>
+                  <h4 class="text-lg font-medium text-center mb-2">External Editor</h4>
+                  <img src="Assets/RTSAG/Videos/exteditor.gif" alt="External Editor Preview" class="rounded shadow-md w-full max-w-xl mx-auto" />
+                </div>
+              
+                <div>
+                  <h4 class="text-lg font-medium text-center mt-6 mb-2">In-Engine Editor</h4>
+                  <img src="Assets/RTSAG/Videos/inteditor.gif" alt="In-Engine Editor Preview" class="rounded shadow-md w-full max-w-xl mx-auto" />
+                </div>
+              
+                <div>
+                  <h4 class="text-lg font-medium text-center mb-2">Collectors</h4>
+                  <img src="Assets/RTSAG/Videos/huntdemo.gif" alt="Collectors Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
+                </div>
+              
+                <div>
+                  <h4 class="text-lg font-medium text-center mb-2">Pathfinding (A* Algorithm)</h4>
+                  <img src="Assets/RTSAG/Videos/pathfollodemo.gif" alt="Pathfinding Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
+                </div>
+              
+                <div>
+                  <h4 class="text-lg font-medium text-center mb-2">Combat (Seek and Flee)</h4>
+                  <img src="Assets/RTSAG/Videos/combatdemo.gif" alt="Combat Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
+                </div>
+              </div>
+          </div>
+      </article>
+    </section>
   </div>
 
   <script>
-    function toggleProject() {
-      const content = document.getElementById('projectContent');
+    function toggleProject(id) {
+      const content = document.getElementById(id);
       content.classList.toggle('hidden');
     }
   </script>
