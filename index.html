@@ -19,11 +19,16 @@
       </div>
     </div>
 
-    <!-- Proyecto -->
+    <!-- Proyecto con toggle -->
     <div class="mb-12">
       <h2 class="text-2xl font-semibold mb-2">Lost Lantern</h2>
-      <p class="mb-2">2D platformer inspired by Hollow Knight. Main mechanic is a lantern. Enemy AI uses Behavior Trees. All art by me.</p>
-      <pre class="bg-black text-green-200 p-4 overflow-x-auto rounded">
+      <button onclick="toggleProject()" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Mostrar / Ocultar Detalles
+      </button>
+
+      <div id="projectContent" class="transition-all duration-300 ease-in-out">
+        <p class="mb-2">2D platformer inspired by Hollow Knight. Main mechanic is a lantern. Enemy AI uses Behavior Trees. All art by me.</p>
+        <pre class="bg-black text-green-200 p-4 overflow-x-auto rounded">
 void Update() {
     if (enemy.IsPlayerInRange()) {
         enemy.Chase();
@@ -31,9 +36,17 @@ void Update() {
         enemy.Patrol();
     }
 }
-      </pre>
-      <a href="#" class="inline-block mt-2 text-blue-600 underline">Ver código en GitHub</a>
+        </pre>
+        <a href="#" class="inline-block mt-2 text-blue-600 underline">Ver código en GitHub</a>
+      </div>
     </div>
   </div>
+
+  <script>
+    function toggleProject() {
+      const content = document.getElementById('projectContent');
+      content.classList.toggle('hidden');
+    }
+  </script>
 </body>
 </html>
