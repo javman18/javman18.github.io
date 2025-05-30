@@ -41,11 +41,15 @@
             </div>
             <script src="https://player.vimeo.com/api/player.js"></script>
         </section>
-
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-semibold text-blue-400 mb-6 text-center">Solo Projects</h2>
+                <button onclick="toggleSection('projects')"
+                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                    Show / Hide
+                </button>
+        </div>
         <!-- Projects -->
-        <!-- Projects -->
-        <section id="projects" class="mb-12">
-            <h2 class="text-2xl font-semibold text-blue-400 mb-6 text-center">Projects</h2>
+        <section id="projects" class="hidden mb-12">
 
             <!-- Project wrapper -->
             <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
@@ -752,7 +756,7 @@ public void Init()
                 </div>
             </article>
 
-                        <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+            <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-2xl font-semibold text-blue-300 mb-4">Way of the Wolf</h3>
                     <button onclick="toggleSection('project5')"
@@ -968,6 +972,95 @@ private void EquipWeapon(InventoryItem item, Vector3 scale, Vector3 angle, Vecto
 
 
                 </div>
+            </article>
+
+
+        </section>
+
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-semibold text-blue-400 mb-6 text-center">Team Projects</h2>
+                <button onclick="toggleSection('teamprojects')"
+                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                    Show / Hide
+                </button>
+        </div>
+        <!-- Team Projects -->
+        <section id="teamprojects" class="hidden mb-12">
+            <!-- Yeltic App -->
+            <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+              <h3 class="text-2xl font-semibold text-blue-300 mb-4">Yeltic App</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Yeltic App is a modular educational and training platform developed by <strong>Yeltic</strong> for Mexican companies. It enables immersive learning on topics such as workplace safety, equipment maintenance, internal policies, onboarding procedures, and more. Built entirely in Unity, the app is designed to be flexible so that each company can deploy custom training content through downloadable modules.
+              </p>
+              <p class="text-gray-300 mb-4">
+                The application is available exclusively for <strong>mobile devices</strong> and is distributed via 
+                <a href="https://play.google.com/store/apps/details?id=com.yeltic.yelticapp&hl=es&pli=1" class="text-blue-500 underline" target="_blank">Google Play</a> and 
+                <a href="https://apps.apple.com/us/app/yeltic-app/id6452047492" class="text-blue-500 underline" target="_blank">App Store</a>. 
+                Its modular architecture leverages Unity Addressables to deliver dynamic content and scenarios tailored to each client.
+              </p>
+              <p class="text-gray-300 font-medium mb-2">Key Responsibilities:</p>
+              <ul class="list-disc list-inside text-gray-300">
+                <li>Implemented navigation between training modules and UI screens using a centralized screen manager system.</li>
+                <li>Integrated Firebase Authentication and Realtime Database to manage user logins and fetch personalized content.</li>
+                <li>Developed logic to download and cache training modules via Unity Addressables system.</li>
+                <li>Handled platform-specific publishing, including iOS builds, provisioning profiles, and App Store submission.</li>
+                <li>Ensured cross-device compatibility across Android and iOS, optimizing UI layout and performance.</li>
+              </ul>
+            </article>
+        
+            <!-- Sedena: Exposure Therapies -->
+            <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+              <h3 class="text-2xl font-semibold text-blue-300 mb-4">Sedena: Exposure Therapies</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Developed by <strong>Yeltic</strong> for the Mexican Army (Sedena), this VR and CAVE-mode experience is used by military psychologists to conduct exposure therapy sessions. The goal is to simulate everyday high-stress situations—such as domestic or workplace harassment—to help individuals build coping strategies in a safe, controlled environment.
+              </p>
+              <p class="text-gray-300 mb-4">
+                The application is built with Unity and leverages <strong>Timeline sequences</strong> to replicate realistic sessions based on psychologist-approved scripts. It also connects to a secure server to <strong>store and retrieve patient data</strong>, making it a functional clinical tool as well as an immersive training platform.
+              </p>
+              <p class="text-gray-300 font-medium mb-2">Key Responsibilities:</p>
+              <ul class="list-disc list-inside text-gray-300">
+                <li>Replicated therapy sessions using Timeline and designer-provided scripts to ensure narrative and visual fidelity.</li>
+                <li>Managed session data recording and retrieval from the server, including patient-specific logs and events.</li>
+                <li>Displayed session feedback and results within the Unity interface for therapist analysis.</li>
+                <li>Published the app to Meta Quest using Meta Quest Developer Hub with proper testing and deployment procedures.</li>
+              </ul>
+            </article>
+        
+            <!-- TEC: Virtual Factory -->
+            <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+              <h3 class="text-2xl font-semibold text-blue-300 mb-4">TEC: Virtual Factory</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Developed by <strong>Yeltic</strong> for Tecnológico de Monterrey, this VR and PC-mode application simulates an interactive factory environment for <strong>Industrial Engineering students</strong>. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through immersive learning.
+              </p>
+              <p class="text-gray-300 mb-4">
+                The platform stores each student’s progress and test results in a secure server, enabling instructors to review performance and adjust training accordingly. The application can run in both <strong>VR headsets</strong> and <strong>PCs</strong>, making it accessible for different hardware setups.
+              </p>
+              <p class="text-gray-300 font-medium mb-2">Key Responsibilities:</p>
+              <ul class="list-disc list-inside text-gray-300">
+                <li>Implemented the student login system with secure encryption to protect personal data during storage and transmission.</li>
+                <li>Developed PC-mode movement and interaction logic to mimic VR navigation using keyboard and mouse.</li>
+                <li>Created structured evaluation tests for students based on academic scripts provided by educators.</li>
+              </ul>
+            </article>
+        
+            <!-- ILCE: We Are the Future -->
+            <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+              <h3 class="text-2xl font-semibold text-blue-300 mb-4">ILCE: We Are the Future</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Developed by <strong>Yeltic</strong> for ILCE, this educational application teaches young students about the environmental impact of pollution in Mexico. Through <strong>immersive storytelling</strong> in both <strong>VR and CAVE mode</strong>
+              </p>
+              <p class="text-gray-300 mb-4">
+                I was the <strong>sole developer</strong> responsible for building the entire application. It features cross-compatible content that seamlessly runs in both VR and CAVE setups. Built with Unity and published using Meta Quest Developer Hub, the app guides users through narrated environments that illustrate the consequences of pollution and encourage reflection on sustainable actions.
+              </p>
+              <p class="text-gray-300 font-medium mb-2">Key Responsibilities:</p>
+              <ul class="list-disc list-inside text-gray-300">
+                <li>Designed and implemented the full VR experience, including environments and interactive elements.</li>
+                <li>Built a system to dynamically share content between VR and CAVE modes with minimal duplication.</li>
+                <li>Created narrative sequences using Unity Timeline based on storyboards and scripts provided by educators.</li>
+                <li>Integrated <strong>SALSA LipSync</strong> for character animations and synchronized dialogue delivery.</li>
+                <li>Managed additive scene loading and modular content structure for performance and scalability.</li>
+                <li>Handled build and deployment through Meta Quest Developer Hub for VR headsets.</li>
+              </ul>
             </article>
         </section>
 
