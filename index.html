@@ -1,110 +1,543 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Javier Fuente - Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javier Fuente - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gradient-to-br from-gray-100 to-white text-gray-800 font-sans">
-  <div class="max-w-4xl mx-auto p-6">
-    <!-- Header -->
-    <header class="mb-10 text-center">
-      <h1 class="text-5xl font-extrabold mb-2">Javier Fuente</h1>
-      <p class="text-lg text-gray-600">Unity Game Developer</p>
-    </header>
+    <div class="max-w-4xl mx-auto p-6">
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-5xl font-extrabold mb-2">Javier Fuente</h1>
+            <p class="text-lg text-gray-600">Unity Game Developer</p>
+        </header>
 
-    <!-- About Me -->
-    <section id="about" class="mb-12 bg-white shadow-md p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-      <p class="text-gray-700 leading-relaxed">
-        I'm Javier Fuente, a game developer specialized in Unity. I love building interactive experiences that blend design, code, and storytelling.
-        In this portfolio, you’ll find a selection of my most relevant projects — from educational apps to 2D platformers with advanced AI.
-        I have hands-on experience with Addressables, XR Toolkit, DOTween animations, shaders, gameplay logic, and VR development for both educational institutions and personal projects.
-      </p>
-    </section>
-
-    <!-- Demo Reel -->
-    <section id="demo-reel" class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Demo Reel</h2>
-      <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-md">
-        <iframe
-          src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
-          frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          allowfullscreen
-          title="DemoReel"
-          class="absolute top-0 left-0 w-full h-full">
-        </iframe>
-      </div>
-      <script src="https://player.vimeo.com/api/player.js"></script>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="mb-12">
-      <h2 class="text-2xl font-semibold mb-6 text-center">Projects</h2>
-
-      <!-- Project: Lost Lantern -->
-      <article class="bg-white shadow-md p-6 rounded-xl mb-8">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold">RTS Agent Generator</h3>
-            <button onclick="toggleProject('projectContent1')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-              Show / Hide Project
-            </button>
-          </div>
-        
-          <div id="projectContent1" class="hidden space-y-4">
-            <p class="text-gray-700">
-              RTS Agent Generator is a Unity-based tool developed as part of my thesis, aimed at designing agents for Real-Time Strategy (RTS) games.  
-              The system focuses on implementing Steering Behaviors and includes both a custom editor and an in-engine editor for agent configuration.  
-              It allows the creation of different types of agents, including resource gatherers, seekers, leaders (using the “Follow the Leader” behavior), and followers.  
-              The tool also features a level creation and saving system, enabling users to build and persist custom RTS scenarios for testing or gameplay purposes.  
-              This provides a flexible way to prototype and test group-based agent behaviors in a modular and reusable workflow.
+        <!-- About Me -->
+        <section id="about" class="mb-12 bg-white shadow-md p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+            <p class="text-gray-700 leading-relaxed">
+                I'm Javier Fuente, a game developer specialized in Unity. I love building interactive experiences that
+                blend design, code, and storytelling.
+                In this portfolio, you’ll find a selection of my most relevant projects — from educational apps to 2D
+                platformers with advanced AI.
+                I have hands-on experience with Addressables, XR Toolkit, DOTween animations, shaders, gameplay logic,
+                and VR development for both educational institutions and personal projects.
             </p>
-        
-            <div class="text-right my-4">
-                <button onclick="toggleProject('imageBlock1')" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
-                  Show / Hide Images
-                </button>
-              </div>
-              
-              <!-- Imágenes ocultas inicialmente -->
-              <div id="imageBlock1" class="hidden space-y-6">
-                <div>
-                  <h4 class="text-lg font-medium text-center mb-2">External Editor</h4>
-                  <img src="Assets/RTSAG/Videos/exteditor.gif" alt="External Editor Preview" class="rounded shadow-md w-full max-w-xl mx-auto" />
-                </div>
-              
-                <div>
-                  <h4 class="text-lg font-medium text-center mt-6 mb-2">In-Engine Editor</h4>
-                  <img src="Assets/RTSAG/Videos/inteditor.gif" alt="In-Engine Editor Preview" class="rounded shadow-md w-full max-w-xl mx-auto" />
-                </div>
-              
-                <div>
-                  <h4 class="text-lg font-medium text-center mb-2">Collectors</h4>
-                  <img src="Assets/RTSAG/Videos/huntdemo.gif" alt="Collectors Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
-                </div>
-              
-                <div>
-                  <h4 class="text-lg font-medium text-center mb-2">Pathfinding (A* Algorithm)</h4>
-                  <img src="Assets/RTSAG/Videos/pathfollodemo.gif" alt="Pathfinding Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
-                </div>
-              
-                <div>
-                  <h4 class="text-lg font-medium text-center mb-2">Combat (Seek and Flee)</h4>
-                  <img src="Assets/RTSAG/Videos/combatdemo.gif" alt="Combat Demo" class="rounded shadow-md w-full max-w-xl mx-auto" />
-                </div>
-              </div>
-          </div>
-      </article>
-    </section>
-  </div>
+        </section>
 
-  <script>
-    function toggleProject(id) {
-      const content = document.getElementById(id);
-      content.classList.toggle('hidden');
+        <!-- Demo Reel -->
+        <section id="demo-reel" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Demo Reel</h2>
+            <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-md">
+                <iframe
+                    src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
+                    frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                    allowfullscreen title="DemoReel" class="absolute top-0 left-0 w-full h-full">
+                </iframe>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+        </section>
+
+        <!-- Projects -->
+        <!-- Projects -->
+        <section id="projects" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Projects</h2>
+
+            <!-- Project wrapper -->
+            <article class="bg-white shadow-md p-6 rounded-xl mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold">RTS Agent Generator</h3>
+                    <button onclick="toggleSection('project1')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Show / Hide Project
+                    </button>
+                </div>
+
+                <div id="project1" class="hidden space-y-6">
+
+                    <!-- Description -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🧾 Description</h4>
+                            <button onclick="toggleSection('desc1')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="desc1" class="hidden">
+                            <p class="text-gray-700 leading-relaxed">
+                                RTS Agent Generator is a Unity-based tool developed as part of my thesis, aimed at
+                                designing agents for Real-Time Strategy (RTS) games.
+                                It focuses on Steering Behaviors and includes both a custom editor and in-engine editor.
+                                It supports agent types such as gatherers, seekers, leaders ("Follow the Leader"), and
+                                followers.
+                                It also features a level creation and saving system for building custom RTS scenarios.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Images -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🖼️ Media</h4>
+                            <button onclick="toggleSection('images1')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="images1" class="hidden grid gap-6">
+                            <div>
+                                <h5 class="text-center font-medium mb-1">External Editor</h5>
+                                <img src="Assets/RTSAG/Videos/exteditor.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="External Editor">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">In-Engine Editor</h5>
+                                <img src="Assets/RTSAG/Videos/inteditor.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="In-Engine Editor">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Collectors</h5>
+                                <img src="Assets/RTSAG/Videos/huntdemo.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="Collectors">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Pathfinding (A*)</h5>
+                                <img src="Assets/RTSAG/Videos/pathfollodemo.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="Pathfinding">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Combat (Seek and Flee)</h5>
+                                <img src="Assets/RTSAG/Videos/combatdemo.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="Combat">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Code Section -->
+                    <section>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">💻 Sample Code</h4>
+                            <button onclick="toggleSection('codeBlock1')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle
+                                All</button>
+                        </div>
+
+                        <div id="codeBlock1" class="hidden space-y-6">
+
+                            <!-- SB Follow the Leader -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">SB Follow the Leader</h5>
+                                    <button onclick="toggleSection('sbFollow1')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="sbFollow1"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+            public void LeaderFollow(GameObject leader)
+            {
+                Vector2 tv = leader.GetComponent&lt;AgentManager&gt;().vel;
+                Vector2 clone = tv;
+                
+                clone = clone.normalized * leaderBD;
+                Vector2 ahead = (Vector2)leader.transform.position + clone;
+                Vector2 behind = (Vector2)leader.transform.position + clone * -1;
+                if (IsOnLeaderSight(leader, ahead))
+                {
+                    Evade(leader.transform);
+                }
+                Arrive(behind);
+                vel += Separate();
+            }
+        </pre>
+                            </div>
+
+                            <!-- Otro algoritmo opcional -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Seek Behavior</h5>
+                                    <button onclick="toggleSection('seekCode')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="seekCode"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+            public Vector2 Seek(Vector2 target)
+            {
+        
+                if (target != null)
+        
+                {
+        
+                    Vector2 desired = target - (Vector2)transform.position;
+                    float d = desired.magnitude;
+                    
+                        desired = desired.normalized * maxVel;
+                        steering = desired - vel;
+        
+                        steering = Vector2.ClampMagnitude(steering, maxForce);
+                        steering /= mass;
+                        
+                        vel = Vector2.ClampMagnitude(vel + steering * Time.deltaTime, maxVel);
+                        transform.position += (Vector3)vel * Time.deltaTime;
+        
+                        
+                        if (vel.magnitude == 0)
+                        {
+                            return steering;
+                        }
+                        LookDirection();
+                    //SteerVisual(desired);
+                        return steering;
+        
+                    
+                }
+                return Wander();
+        
+            }
+        </pre>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Pathfinding</h5>
+                                    <button onclick="toggleSection('pathCode')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="pathCode"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+            public List&lt;Node&gt; AStar(int startX, int startY, int endX, int endY) {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                Node begin = map.GetMapNode(startX, startY);
+                Node goal = map.GetMapNode(endX, endY);
+        
+                if (begin == null || goal == null) {
+                   
+                    return null;
+                }
+        
+                openList = new BinaryTree&lt;Node&gt;(map.MaxSize);
+                closedList = new HashSet&lt;Node&gt;();
+                openList.Add(begin);
+                for (int x = 0; x < map.GetWidth(); x++) {
+                    for (int y = 0; y < map.GetHeight(); y++) {
+                        Node pathNode = map.GetMapNode(x, y);
+                        pathNode.gCost = infinity;
+                        pathNode.CalculateF();
+                        pathNode.parent = null;
+                    }
+                }
+        
+                begin.gCost = 0;
+                begin.hCost = HeuristicM(begin, goal);
+                begin.CalculateF();
+        
+               
+                while (openList.Count > 0) {
+                    Node current = openList.RemoveFirst();
+                    closedList.Add(current);
+                    if (current == goal) {
+                        sw.Stop();
+                        UnityEngine.Debug.Log("Camino encontrado en " + sw.ElapsedMilliseconds + " ms");
+                        return BackTrack(goal);
+                    }
+        
+                    foreach (Node neighbourNode in GetNeighbourList(current)) {
+                        if (closedList.Contains(neighbourNode)) continue;
+                        if (!neighbourNode.notWall) {
+                            closedList.Add(neighbourNode);
+                            continue;
+                        }
+        
+                        int tentativeGCost = current.gCost + HeuristicM(current, neighbourNode);
+                        if (tentativeGCost < neighbourNode.gCost) {
+                            neighbourNode.parent = current;
+                            neighbourNode.gCost = tentativeGCost;
+                            neighbourNode.hCost = HeuristicM(neighbourNode, goal);
+                            neighbourNode.CalculateF();
+        
+                            if (!openList.Contains(neighbourNode)) {
+                                openList.Add(neighbourNode);
+                            }
+                            else
+                            {
+                                openList.UpdeateLeaf(neighbourNode);
+                            }
+                        }
+                        
+                    }
+                }
+                return null;
+            }
+        </pre>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </article>
+
+            <article class="bg-white shadow-md p-6 rounded-xl mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold">The Lost Lantern</h3>
+                    <button onclick="toggleSection('project2')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Show / Hide Project
+                    </button>
+                </div>
+
+                <div id="project2" class="hidden space-y-6">
+
+                    <!-- Description -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🧾 Description</h4>
+                            <button onclick="toggleSection('desc2')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="desc2" class="hidden">
+                            <p class="text-gray-700 leading-relaxed">
+                                The Lost Lantern is a personal 2D platformer project inspired by <em>Hollow Knight</em>,
+                                featuring fluid controls and atmospheric exploration.
+                                Its core mechanic revolves around a mystical lantern used for both navigation and
+                                interaction.
+                                The movement system is heavily influenced by <em>Celeste</em>, implementing techniques
+                                like coyote time to provide responsive and precise platforming.
+                                Enemy AI behavior is driven by a modular system based on Behavior Trees, allowing for
+                                flexible decision-making and state management.
+                                All character animations were handcrafted in Unity using sprite rigging and the built-in
+                                animation system.
+                                The project showcases a blend of tight gameplay, expressive animation, and original art
+                                entirely created by me.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Images -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🖼️ Media</h4>
+                            <button onclick="toggleSection('images2')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="images2" class="hidden grid gap-6">
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Mechanics demo</h5>
+                                <img src="Assets/LL/Videos/lostlanternvid.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="External Editor">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Animation rig</h5>
+                                <img src="Assets/LL/Videos/animationsll.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="In-Engine Editor">
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- Code Section -->
+                    <section>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">💻 Sample Code</h4>
+                            <button onclick="toggleSection('codeBlock2')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle
+                                All</button>
+                        </div>
+
+                        <div id="codeBlock2" class="hidden space-y-6">
+
+                            <!-- SB Follow the Leader -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Behavior tree</h5>
+                                    <button onclick="toggleSection('bt1')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="bt1"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public class BehaviorTree : BehaviorNode
+{
+    readonly IPolicy policy;
+
+    public BehaviorTree(string name, IPolicy policy = null) : base(name)
+    {
+        this.policy = policy ?? Policies.RunForever;
     }
-  </script>
+
+    public override Status Process()
+    {
+        base.Process();
+        Status status = children[currentChild].Process();
+        //Debug.Log(children[currentChild].name);
+        if (policy.ShouldReturn(status))
+        {
+            return status;
+        }
+
+        currentChild = (currentChild + 1) % children.Count;
+        return Status.Running;
+    }
+
+    public void PrintTree()
+    {
+        StringBuilder sb = new StringBuilder();
+        PrintNode(this, 0, sb);
+        Debug.Log(sb.ToString());
+    }
+
+    static void PrintNode(BehaviorNode node, int indentLevel, StringBuilder sb)
+    {
+        sb.Append(' ', indentLevel * 2).AppendLine(node.name);
+        foreach (BehaviorNode child in node.children)
+        {
+            PrintNode(child, indentLevel + 1, sb);
+        }
+    }
+}
+          </pre>
+                            </div>
+
+                            <!-- Otro algoritmo opcional -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Enemy BT</h5>
+                                    <button onclick="toggleSection('enemyBT')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="enemyBT"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+protected override void SetupBehaviorTree()
+{
+    behaviorTree = new BehaviorTree("DoubtShade");
+
+    PrioritySelector actions = new PrioritySelector("Agent Logic");
+    RandomSelector randomAttacks = new RandomSelector("Random Attacks", 20);
+    // Enemy logic Selector
+    SelectorNode enemyLogic = new SelectorNode("Enemy Logic");
+    #region attack player
+    SequenceNode lungAndAttack = new SequenceNode("Attack Player");
+    // Condition: Check if Player is in attack range
+    lungAndAttack.AddChild(new Leaf("Is Player In attack range?", new CheckTargetInAttackRange(this, player.transform, attackDistance, targetManager)));
+
+    lungAndAttack.AddChild(new Leaf("Lunge towards player", new LungeBehavior(this, player.transform, attackDistance, targetManager, 2f)));
+
+    lungAndAttack.AddChild(new Leaf("Attack Player", new AttackBehavior(this, targetManager)));
+
+    lungAndAttack.AddChild(new Leaf("Retreat", new RetreatBehavior(this, player.transform, attackDistance, targetManager)));
+    #endregion
+
+    #region Detect and follow player
+    // Detect Player and Chase Sequence
+    SequenceNode detectAndChasePlayer = new SequenceNode("Detect and Chase Player");
+    // Condition: Check if Player is Nearby
+    detectAndChasePlayer.AddChild(new Leaf("is player nearby?", new CheckPlayerInFOVRange(this, player.transform, detectionDistance, targetManager)));
+    
+    // Repeater Node to Continuously Chase the Player While in Range
+    detectAndChasePlayer.AddChild(new Leaf("Chase Player", new FloatMoveBehaviour(this, player.transform, alertedDistance, 6f, targetManager, false)));
+
+    // Condition: Check if Player Left Range
+   
+    #endregion
+    // Add the Sequence to Enemy Logic
+    randomAttacks.AddChild(lungAndAttack);
+    enemyLogic.AddChild(randomAttacks);
+    enemyLogic.AddChild(detectAndChasePlayer);
+    Leaf returnToOrigin = new Leaf("Return to Origin", new ReturnToOriginStrategy(this));
+
+    // Add enemyLogic and any fallback behavior to actions
+    actions.AddChild(enemyLogic);
+    actions.AddChild(returnToOrigin);
+    behaviorTree.AddChild(actions);
+
+    behaviorTree.PrintTree();
+}
+          </pre>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Jump checker</h5>
+                                    <button onclick="toggleSection('jumpCode')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="jumpCode"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public void JumpChecks()
+{
+    if (Input.GetButtonDown("Jump"))
+    {
+        jumpBufferTimer = movementHandler.moveStats.jumpBuffer.bufferTime;
+        jumpReleasedDuringBuffer = false;
+        animator.SetTrigger("Jump");
+    }
+    if (Input.GetButtonUp("Jump"))
+    {
+        if (jumpBufferTimer > 0f)
+        {
+
+            jumpReleasedDuringBuffer = true;
+        }
+
+
+
+        if (isJumping && VerticalVelocity > 0f)
+        {
+
+            if (isPastApexThreshold)
+            {
+                isPastApexThreshold = false;
+                isFastFalling = true;
+                fastFallTime = movementHandler.moveStats.jumpCut.upwardsCancelTime;
+                VerticalVelocity = 0f;
+            }
+            else
+            {
+                isFastFalling = true;
+                fastFallReleaseSpeed = VerticalVelocity;
+            }
+        }
+
+
+    }
+
+    if (jumpBufferTimer > 0f && !isJumping && (isGrounded || _coyoteTimer > 0f))
+    {
+        InitiateJump(1);
+        if (jumpReleasedDuringBuffer)
+        {
+            isFastFalling = true;
+            fastFallReleaseSpeed = VerticalVelocity; 
+        }
+        
+    }
+    else if (jumpBufferTimer > 0f && isJumping && number0fJumpsUsed < movementHandler.moveStats.jump.numberOfJumpsAllowed)
+    {
+        isFastFalling = false;
+        InitiateJump(1);
+    }
+    else if (jumpBufferTimer > 0f && isFalling && number0fJumpsUsed < movementHandler.moveStats.jump.numberOfJumpsAllowed - 1)
+    {
+        InitiateJump(2);
+        isFastFalling = false;
+    }
+}
+          </pre>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </article>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleSection(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('hidden');
+        }
+    </script>
 </body>
+
 </html>
