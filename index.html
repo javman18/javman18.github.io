@@ -279,6 +279,55 @@
 
             <article class="bg-white shadow-md p-6 rounded-xl mb-8">
                 <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold">War Shadows</h3>
+                    <button onclick="toggleSection('project3')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Show / Hide Project
+                    </button>
+                </div>
+
+                <div id="project3" class="hidden space-y-6">
+
+                    <!-- Description -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🧾 Description</h4>
+                            <button onclick="toggleSection('desc3')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="desc3" class="hidden">
+                            <p class="text-gray-700 leading-relaxed">
+                                War Shadows is a real-time strategy game prototype built using the RTS Agent Generator, a tool designed to minimize the need for manual coding when developing RTS agent behaviors.  
+                                The project demonstrates the generator’s flexibility through a fully playable scenario with custom-configured agents.  
+                                While most gameplay logic was created using the visual interface of the tool, additional systems were scripted manually, including a dynamic day-night cycle, a main menu interface, and a fog of war system that reveals the map based on agent vision.  
+                                This prototype showcases how designers can create complex RTS behaviors with minimal coding while still integrating advanced features when needed.
+
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Images -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🖼️ Media</h4>
+                            <button onclick="toggleSection('images3')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="images3" class="hidden grid gap-6">
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Fog of War</h5>
+                                <img src="Assets/RTSAG/Videos/fog.gif"
+                                    class="rounded shadow w-full max-w-xl mx-auto" alt="External Editor">
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                </div>
+            </article>
+
+            <article class="bg-white shadow-md p-6 rounded-xl mb-8">
+                <div class="flex items-center justify-between mb-4">
                     <h3 class="text-2xl font-bold">The Lost Lantern</h3>
                     <button onclick="toggleSection('project2')"
                         class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
