@@ -577,6 +577,180 @@ public void JumpChecks()
 
                 </div>
             </article>
+
+            <article class="bg-white shadow-md p-6 rounded-xl mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold">Play & Learn</h3>
+                    <button onclick="toggleSection('project4')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Show / Hide Project
+                    </button>
+                </div>
+
+                <div id="project4" class="hidden space-y-6">
+
+                    <!-- Description -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🧾 Description</h4>
+                            <button onclick="toggleSection('desc4')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="desc4" class="hidden">
+                            <p class="text-gray-700 leading-relaxed">
+                                Play and Learn is a Unity-based educational app developed to help school students learn English through interactive mini-games.
+                                It focuses on vocabulary and sentence construction using engaging mechanics tailored to each educational level.
+
+                                The app includes a variety of game types such as Flashcards, Memory Match, Word Builder, Choose the First Letter, Complete the Word, and Listen and Choose.
+                                Each game is dynamically generated from structured vocabulary topics like Professions, City Places, or Days of the Week, with target sentences and audio support.
+
+                                It features a login system to adapt content by school level, supports mobile deployment (Android native and iOS via Progressive Web App), and uses Addressables for modular content loading.
+                                A responsive UI system ensures proper layout across screen sizes, while a scoring system tracks progress per game and topic.
+
+                                Whether at school or at home, Play and Learn turns English learning into a fun and motivating experience.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Images -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🖼️ Media</h4>
+                            <button onclick="toggleSection('images4')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="images4" class="hidden grid gap-6">
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Flash Cards</h5>
+                                <img src="Assets/PL/Videos/FlashCardsvid.gif"
+                                    class="rounded shadow mx-auto w-[200px] h-auto"
+                                    alt="Flash Cards Video">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Menu Flow</h5>
+                                <img src="Assets/PL/Videos/menupl.gif"
+                                    class="rounded shadow mx-auto w-[200px] h-auto"
+                                    alt="Menu Flow Viedeo">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Code Section -->
+                    <section>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">💻 Sample Code</h4>
+                            <button onclick="toggleSection('codeBlock4')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle
+                                All</button>
+                        </div>
+
+                        <div id="codeBlock4" class="hidden space-y-6">
+
+                            <!-- SB Follow the Leader -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Scriptables</h5>
+                                    <button onclick="toggleSection('scriptablepl')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="scriptablepl"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+[CreateAssetMenu(fileName = "NewGameData", menuName = "EducationalApp/Game Data")]
+public class GameData : ScriptableObject
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public string gameName;
+    public Sprite icon;
+    public GameController gamePrefab;
+    public int requiredLevel;
+
+    public string gameKey;
+
+}
+        </pre>
+                            </div>
+
+                            <!-- Otro algoritmo opcional -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Drag and drop</h5>
+                                    <button onclick="toggleSection('dragdrop')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="dragdrop"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public void OnDrop(PointerEventData eventData)
+{
+    ResetScale(); // ensure we reset scale on drop
+    var draggable = eventData.pointerDrag?.GetComponent<Draggable>();
+    if (draggable == null) return;
+    string droppedValue = draggable.GetValue();
+    Debug.Log($"Comparing Drop: '{droppedValue}' vs Correct: '{correctValue}'");
+    if (string.Equals(droppedValue, correctValue, StringComparison.OrdinalIgnoreCase))
+    {
+        if (placeholderGroup != null)
+            placeholderGroup.SetActive(false);
+        if (targetText != null)
+        {
+            targetText.gameObject.SetActive(true);
+            string replacement = MatchCasingToText(correctValue, placeholder, targetText.text, targetText.text.IndexOf(placeholder));
+            targetText.text = replacement;
+        }
+        Destroy(draggable.gameObject);
+        OnCorrectDrop?.Invoke();
+    }
+    else
+    {
+        OnWrongDrop?.Invoke();
+        draggable.ResetPosition();
+    }
+}
+        </pre>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Game initialization and setup</h5>
+                                    <button onclick="toggleSection('initgame')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="initgame"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public abstract void SetUpContent();
+// Start is called once before the first execution of Update after the MonoBehaviour is created
+void Start()
+{
+    if (gameData == null)
+    {
+        Init(); // Uses GameSession.Instance.selectedGame
+    }
+    backButton.onClick.AddListener(GoBack);
+    ColorThemeManager.Instance.ApplyTheme();
+}
+public void Init()
+{
+    gameData = GameSession.Instance.selectedGame;
+    topicData = GameSession.Instance.selectedTopic;
+    vocabularySet = topicData.vocabularySet;
+    if (gameData == null)
+    {
+        Debug.LogError("No GameData found in GameSession.");
+        return;
+    }
+    if (titleText != null)
+    {
+        titleText.text = gameData.gameName;
+    }
+    SetUpContent();
+    ScoreManager.Instance.ResetGameScore(gameData.gameKey);
+}
+        </pre>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </article>
         </section>
 
     </div>
