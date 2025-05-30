@@ -67,7 +67,7 @@
                                 class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
                         </div>
                         <div id="desc1" class="hidden">
-                            <p class="text-gray-700 leading-relaxed">
+                            <p class="text-gray-300 leading-relaxed">
                                 RTS Agent Generator is a Unity-based tool developed as part of my thesis, aimed at
                                 designing agents for Real-Time Strategy (RTS) games.
                                 It focuses on Steering Behaviors and includes both a custom editor and in-engine editor.
@@ -296,7 +296,7 @@
                                 class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
                         </div>
                         <div id="desc3" class="hidden">
-                            <p class="text-gray-700 leading-relaxed">
+                            <p class="text-gray-300 leading-relaxed">
                                 War Shadows is a real-time strategy game prototype built using the RTS Agent Generator, a tool designed to minimize the need for manual coding when developing RTS agent behaviors.  
                                 The project demonstrates the generator’s flexibility through a fully playable scenario with custom-configured agents.  
                                 While most gameplay logic was created using the visual interface of the tool, additional systems were scripted manually, including a dynamic day-night cycle, a main menu interface, and a fog of war system that reveals the map based on agent vision.  
@@ -345,7 +345,7 @@
                                 class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
                         </div>
                         <div id="desc2" class="hidden">
-                            <p class="text-gray-700 leading-relaxed">
+                            <p class="text-gray-300 leading-relaxed">
                                 The Lost Lantern is a personal 2D platformer project inspired by <em>Hollow Knight</em>,
                                 featuring fluid controls and atmospheric exploration.
                                 Its core mechanic revolves around a mystical lantern used for both navigation and
@@ -597,7 +597,7 @@ public void JumpChecks()
                                 class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
                         </div>
                         <div id="desc4" class="hidden">
-                            <p class="text-gray-700 leading-relaxed">
+                            <p class="text-gray-300 leading-relaxed">
                                 Play and Learn is a Unity-based educational app developed to help school students learn English through interactive mini-games.
                                 It focuses on vocabulary and sentence construction using engaging mechanics tailored to each educational level.
 
@@ -742,6 +742,224 @@ public void Init()
     }
     SetUpContent();
     ScoreManager.Instance.ResetGameScore(gameData.gameKey);
+}
+        </pre>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </article>
+
+                        <article class="mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-semibold text-blue-300 mb-4">Way of the Wolf</h3>
+                    <button onclick="toggleSection('project5')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Show / Hide Project
+                    </button>
+                </div>
+
+                <div id="project5" class="hidden space-y-6">
+
+                    <!-- Description -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🧾 Description</h4>
+                            <button onclick="toggleSection('desc5')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="desc5" class="hidden">
+                            <p class="text-gray-300 leading-relaxed">
+                                Way of the Wolf is a 3D Unity-based prototype developed to showcase core gameplay systems in an Ice Age setting, where players control a lone wolf surviving in a frozen wilderness.
+                                The project focuses on system integration and gameplay mechanics rather than full narrative development.
+
+                                It features foundational systems such as a real-time inventory, ability usage, and enemy AI using behavior trees, allowing for dynamic and reactive enemy behaviors.
+                                Players can equip weapons and trigger special skills.
+
+                                With its focus on mechanics and system design, Way of the Wolf serves as a proof of concept for a potential full-scale survival-action experience.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Images -->
+                    <section class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">🖼️ Media</h4>
+                            <button onclick="toggleSection('images5')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle</button>
+                        </div>
+                        <div id="images5" class="hidden grid gap-6">
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Inentory & equip weapons</h5>
+                                <img src="Assets/WW/Videos/WWinventory.gif"
+                                    class="rounded shadow mx-auto w-[400px] h-auto"
+                                    alt="Flash Cards Video">
+                            </div>
+                            <div>
+                                <h5 class="text-center font-medium mb-1">Skills</h5>
+                                <img src="Assets/WW/Videos/WWSkills.gif"
+                                    class="rounded shadow mx-auto w-[400px] h-auto"
+                                    alt="Menu Flow Viedeo">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Code Section -->
+                    <section>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-bold">💻 Sample Code</h4>
+                            <button onclick="toggleSection('codeBlock5')"
+                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Toggle
+                                All</button>
+                        </div>
+
+                        <div id="codeBlock5" class="hidden space-y-6">
+
+                            <!-- SB Follow the Leader -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Inventory System</h5>
+                                    <button onclick="toggleSection('inv')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="inv"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public class InventorySystem
+{
+    public event EventHandler OnItemListChanged;
+    private Dictionary&lt;InventoryItemData, InventoryItem&gt; m_itemDictionary;
+    public List&lt;InventoryItem&gt; inventory { get; private set; }
+    private Action&lt;InventoryItem&gt; useItemAction;
+    public InventorySystem(Action&lt;InventoryItem&gt; useItemAction)
+    {
+        inventory = new List&lt;InventoryItem&gt;();
+        this.useItemAction = useItemAction;
+        m_itemDictionary = new Dictionary&lt;InventoryItemData, InventoryItem&gt;();
+    }
+    public InventoryItem Get(InventoryItemData refData)
+    {
+        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))
+        {
+            return value;
+        }
+        return null;
+    }
+    public void Add(InventoryItemData refData)
+    {
+        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))
+        {
+            value.AddToSrack();
+        }
+        else
+        {
+            InventoryItem newItem = new InventoryItem(refData);
+            inventory.Add(newItem);
+            m_itemDictionary.Add(refData, newItem);
+        }
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Remove(InventoryItemData refData)
+    {
+        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))
+        {
+            value.RemoveFromStack();
+            if (value.stackSize == 0)
+            {
+                inventory.Remove(value);
+                m_itemDictionary.Remove(refData);
+            }
+        }
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void UseItem(InventoryItem item)
+    {
+        useItemAction(item);
+    }
+}
+        </pre>
+                            </div>
+
+                            <!-- Otro algoritmo opcional -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Skill state machine</h5>
+                                    <button onclick="toggleSection('skill')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="skill"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+public class PlayerFSM_SkillUse : PlayerFSMState
+{
+    public PlayerFSM_SkillUse(PlayerController player) : base(player)
+    {
+        id = PlayerFSMStateType.SKILLUSE;
+    }
+
+    public override void Enter()
+    {
+        player.playerAnimator.SetBool("SkillUse", true);
+    }
+    public override void Exit()
+    {
+        player.playerAnimator.SetBool("SkillUse", false);
+    }
+
+    public override void Update()
+    {
+        if (player.itemEquiped.data.equipedSkill.CanUseSkill())
+        {
+            player.itemEquiped.data.equipedSkill.Activate(player);
+        }
+        if (player.itemEquiped.data != null)
+        {
+
+            if (player.itemEquiped.data.equipedSkill != null)
+            {
+                if (player.itemEquiped.data.equipedSkill.GetIsOnCooldown() == true)
+                {
+                    player.playerFSM.SetCurrentState(PlayerFSMStateType.NORMAL);
+                }
+            }
+        }
+    }
+}
+        </pre>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="text-md font-semibold">Equip Weapon</h5>
+                                    <button onclick="toggleSection('equip')"
+                                        class="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-600">Toggle</button>
+                                </div>
+                                <pre id="equip"
+                                    class="hidden bg-black text-green-200 text-sm rounded p-4 overflow-x-auto">
+private void EquipWeapon(InventoryItem item, Vector3 scale, Vector3 angle, Vector3 position)
+{
+
+    if (objectHolder.transform.childCount > 0)
+    {
+        for (int i = 0; i < objectHolder.transform.childCount; i++)
+        {
+            Destroy(objectHolder.transform.GetChild(i).gameObject);
+        }
+       
+    }
+    GameObject weapon = Instantiate(item.data.prefab, objectHolder.transform.position, transform.rotation);
+    weapon.transform.parent = objectHolder.transform;
+    weapon.name = item.data.displayName;
+    weapon.SetActive(false);
+    itemEquiped = item;
+    if (itemEquiped.data.equipedSkill != null)
+    {
+        itemEquiped.data.equipedSkill.SetActive(false);
+        itemEquiped.data.equipedSkill.SetIsOnCooldown(false);
+    }
+
+    StartCoroutine(MaterializeAndDematerialize(weapon, scale,angle,position));
 }
         </pre>
                             </div>
