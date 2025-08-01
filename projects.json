@@ -1,0 +1,164 @@
+{
+  "soloProjects": [
+    {
+      "id": "project1",
+      "title": "RTS Agent Generator",
+      "description": "RTS Agent Generator is a Unity-based tool developed as part of my thesis, aimed at designing agents for Real-Time Strategy (RTS) games. It focuses on Steering Behaviors and includes both a custom editor and in-engine editor. It supports agent types such as gatherers, seekers, leaders (\"Follow the Leader\"), and followers. It also features a level creation and saving system for building custom RTS scenarios.",
+      "media": [
+        { "label": "External Editor", "url": "Assets/RTSAG/Videos/exteditor.gif" },
+        { "label": "In-Engine Editor", "url": "Assets/RTSAG/Videos/inteditor.gif" },
+        { "label": "Collectors", "url": "Assets/RTSAG/Videos/huntdemo.gif" },
+        { "label": "Pathfinding (A*)", "url": "Assets/RTSAG/Videos/pathfollodemo.gif" },
+        { "label": "Combat (Seek and Flee)", "url": "Assets/RTSAG/Videos/combatdemo.gif" }
+      ],
+      "codeBlocks": [
+        {
+          "label": "SB Follow the Leader",
+          "code": "public void LeaderFollow(GameObject leader)\n{\n    Vector2 tv = leader.GetComponent<AgentManager>().vel;\n    Vector2 clone = tv;\n    clone = clone.normalized * leaderBD;\n    Vector2 ahead = (Vector2)leader.transform.position + clone;\n    Vector2 behind = (Vector2)leader.transform.position + clone * -1;\n    if (IsOnLeaderSight(leader, ahead))\n    {\n        Evade(leader.transform);\n    }\n    Arrive(behind);\n    vel += Separate();\n}"
+        },
+        {
+          "label": "Seek Behavior",
+          "code": "public Vector2 Seek(Vector2 target)\n{\n    if (target != null)\n    {\n        Vector2 desired = target - (Vector2)transform.position;\n        float d = desired.magnitude;\n        desired = desired.normalized * maxVel;\n        steering = desired - vel;\n        steering = Vector2.ClampMagnitude(steering, maxForce);\n        steering /= mass;\n        vel = Vector2.ClampMagnitude(vel + steering * Time.deltaTime, maxVel);\n        transform.position += (Vector3)vel * Time.deltaTime;\n        if (vel.magnitude == 0)\n        {\n            return steering;\n        }\n        LookDirection();\n        return steering;\n    }\n    return Wander();\n}"
+        },
+        {
+          "label": "Pathfinding",
+          "code": "public List<Node> AStar(int startX, int startY, int endX, int endY) {\n    Stopwatch sw = new Stopwatch();\n    sw.Start();\n    Node begin = map.GetMapNode(startX, startY);\n    Node goal = map.GetMapNode(endX, endY);\n    if (begin == null || goal == null) {\n        return null;\n    }\n    openList = new BinaryTree<Node>(map.MaxSize);\n    closedList = new HashSet<Node>();\n    openList.Add(begin);\n    for (int x = 0; x < map.GetWidth(); x++) {\n        for (int y = 0; y < map.GetHeight(); y++) {\n            Node pathNode = map.GetMapNode(x, y);\n            pathNode.gCost = infinity;\n            pathNode.CalculateF();\n            pathNode.parent = null;\n        }\n    }\n    begin.gCost = 0;\n    begin.hCost = HeuristicM(begin, goal);\n    begin.CalculateF();\n    while (openList.Count > 0) {\n        Node current = openList.RemoveFirst();\n        closedList.Add(current);\n        if (current == goal) {\n            sw.Stop();\n            UnityEngine.Debug.Log(\"Camino encontrado en \" + sw.ElapsedMilliseconds + \" ms\");\n            return BackTrack(goal);\n        }\n        foreach (Node neighbourNode in GetNeighbourList(current)) {\n            if (closedList.Contains(neighbourNode)) continue;\n            if (!neighbourNode.notWall) {\n                closedList.Add(neighbourNode);\n                continue;\n            }\n            int tentativeGCost = current.gCost + HeuristicM(current, neighbourNode);\n            if (tentativeGCost < neighbourNode.gCost) {\n                neighbourNode.parent = current;\n                neighbourNode.gCost = tentativeGCost;\n                neighbourNode.hCost = HeuristicM(neighbourNode, goal);\n                neighbourNode.CalculateF();\n                if (!openList.Contains(neighbourNode)) {\n                    openList.Add(neighbourNode);\n                }\n                else\n                {\n                    openList.UpdeateLeaf(neighbourNode);\n                }\n            }\n        }\n    }\n    return null;\n}"
+        }
+      ]
+    },
+    {
+      "id": "project3",
+      "title": "War Shadows",
+      "description": "War Shadows is a real-time strategy game prototype built using the RTS Agent Generator, a tool designed to minimize the need for manual coding when developing RTS agent behaviors. The project demonstrates the generator’s flexibility through a fully playable scenario with custom-configured agents. While most gameplay logic was created using the visual interface of the tool, additional systems were scripted manually, including a dynamic day-night cycle, a main menu interface, and a fog of war system that reveals the map based on agent vision.",
+      "media": [
+        { "label": "Fog of War", "url": "Assets/RTSAG/Videos/Fog.gif" }
+      ],
+      "codeBlocks": []
+    },
+    {
+      "id": "project2",
+      "title": "The Lost Lantern",
+      "description": "The Lost Lantern is a personal 2D platformer project inspired by Hollow Knight, featuring fluid controls and atmospheric exploration. Its core mechanic revolves around a mystical lantern used for both navigation and interaction. The movement system is heavily influenced by Celeste, implementing techniques like coyote time to provide responsive and precise platforming. Enemy AI behavior is driven by a modular system based on Behavior Trees, allowing for flexible decision-making and state management. All character animations were handcrafted in Unity using sprite rigging and the built-in animation system. The project showcases a blend of tight gameplay, expressive animation, and original art entirely created by me.",
+      "media": [
+        { "label": "Mechanics demo", "url": "Assets/LL/Videos/lostlanternvid.gif" },
+        { "label": "Animation rig", "url": "Assets/LL/Videos/animationsll.gif" }
+      ],
+      "codeBlocks": [
+        {
+          "label": "Behavior tree",
+          "code": "public class BehaviorTree : BehaviorNode {\n    readonly IPolicy policy;\n    public BehaviorTree(string name, IPolicy policy = null) : base(name) {\n        this.policy = policy ?? Policies.RunForever;\n    }\n    public override Status Process() {\n        base.Process();\n        Status status = children[currentChild].Process();\n        if (policy.ShouldReturn(status)) {\n            return status;\n        }\n        currentChild = (currentChild + 1) % children.Count;\n        return Status.Running;\n    }\n    public void PrintTree() {\n        StringBuilder sb = new StringBuilder();\n        PrintNode(this, 0, sb);\n        Debug.Log(sb.ToString());\n    }\n    static void PrintNode(BehaviorNode node, int indentLevel, StringBuilder sb) {\n        sb.Append(' ', indentLevel * 2).AppendLine(node.name);\n        foreach (BehaviorNode child in node.children) {\n            PrintNode(child, indentLevel + 1, sb);\n        }\n    }\n}"
+        },
+        {
+          "label": "Enemy BT",
+          "code": "protected override void SetupBehaviorTree() {\n    behaviorTree = new BehaviorTree(\"DoubtShade\");\n    PrioritySelector actions = new PrioritySelector(\"Agent Logic\");\n    RandomSelector randomAttacks = new RandomSelector(\"Random Attacks\", 20);\n    SelectorNode enemyLogic = new SelectorNode(\"Enemy Logic\");\n    SequenceNode lungAndAttack = new SequenceNode(\"Attack Player\");\n    lungAndAttack.AddChild(new Leaf(\"Is Player In attack range?\", new CheckTargetInAttackRange(this, player.transform, attackDistance, targetManager)));\n    lungAndAttack.AddChild(new Leaf(\"Lunge towards player\", new LungeBehavior(this, player.transform, attackDistance, targetManager, 2f)));\n    lungAndAttack.AddChild(new Leaf(\"Attack Player\", new AttackBehavior(this, targetManager)));\n    lungAndAttack.AddChild(new Leaf(\"Retreat\", new RetreatBehavior(this, player.transform, attackDistance, targetManager)));\n    SequenceNode detectAndChasePlayer = new SequenceNode(\"Detect and Chase Player\");\n    detectAndChasePlayer.AddChild(new Leaf(\"is player nearby?\", new CheckPlayerInFOVRange(this, player.transform, detectionDistance, targetManager)));\n    detectAndChasePlayer.AddChild(new Leaf(\"Chase Player\", new FloatMoveBehaviour(this, player.transform, alertedDistance, 6f, targetManager, false)));\n    randomAttacks.AddChild(lungAndAttack);\n    enemyLogic.AddChild(randomAttacks);\n    enemyLogic.AddChild(detectAndChasePlayer);\n    Leaf returnToOrigin = new Leaf(\"Return to Origin\", new ReturnToOriginStrategy(this));\n    actions.AddChild(enemyLogic);\n    actions.AddChild(returnToOrigin);\n    behaviorTree.AddChild(actions);\n    behaviorTree.PrintTree();\n}"
+        },
+        {
+          "label": "Jump checker",
+          "code": "public void JumpChecks()\n{\n    if (Input.GetButtonDown(\"Jump\"))\n    {\n        jumpBufferTimer = movementHandler.moveStats.jumpBuffer.bufferTime;\n        jumpReleasedDuringBuffer = false;\n        animator.SetTrigger(\"Jump\");\n    }\n    if (Input.GetButtonUp(\"Jump\"))\n    {\n        if (jumpBufferTimer > 0f)\n        {\n            jumpReleasedDuringBuffer = true;\n        }\n        if (isJumping && VerticalVelocity > 0f)\n        {\n            if (isPastApexThreshold)\n            {\n                isPastApexThreshold = false;\n                isFastFalling = true;\n                fastFallTime = movementHandler.moveStats.jumpCut.upwardsCancelTime;\n                VerticalVelocity = 0f;\n            }\n            else\n            {\n                isFastFalling = true;\n                fastFallReleaseSpeed = VerticalVelocity;\n            }\n        }\n    }\n    if (jumpBufferTimer > 0f && !isJumping && (isGrounded || _coyoteTimer > 0f))\n    {\n        InitiateJump(1);\n        if (jumpReleasedDuringBuffer)\n        {\n            isFastFalling = true;\n            fastFallReleaseSpeed = VerticalVelocity;\n        }\n    }\n    else if (jumpBufferTimer > 0f && isJumping && number0fJumpsUsed < movementHandler.moveStats.jump.numberOfJumpsAllowed)\n    {\n        isFastFalling = false;\n        InitiateJump(1);\n    }\n    else if (jumpBufferTimer > 0f && isFalling && number0fJumpsUsed < movementHandler.moveStats.jump.numberOfJumpsAllowed - 1)\n    {\n        InitiateJump(2);\n        isFastFalling = false;\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "project4",
+      "title": "Play & Learn",
+      "description": "Play and Learn is a Unity-based educational app developed to help school students learn English through interactive mini-games. It focuses on vocabulary and sentence construction using engaging mechanics tailored to each educational level.\n\nThe app includes a variety of game types such as Flashcards, Memory Match, Word Builder, Choose the First Letter, Complete the Word, and Listen and Choose. Each game is dynamically generated from structured vocabulary topics like Professions, City Places, or Days of the Week, with target sentences and audio support.\n\nIt features a login system to adapt content by school level, supports mobile deployment (Android native and iOS via Progressive Web App), and uses Addressables for modular content loading. A responsive UI system ensures proper layout across screen sizes, while a scoring system tracks progress per game and topic.\n\nWhether at school or at home, Play and Learn turns English learning into a fun and motivating experience.",
+      "media": [
+        { "label": "Flash Cards", "url": "Assets/PL/Videos/FlashCardsvid.gif" },
+        { "label": "Menu Flow", "url": "Assets/PL/Videos/menupl.gif" }
+      ],
+      "codeBlocks": [
+        {
+          "label": "Scriptables",
+          "code": "[CreateAssetMenu(fileName = \"NewGameData\", menuName = \"EducationalApp/Game Data\")]\npublic class GameData : ScriptableObject {\n    public string gameName;\n    public Sprite icon;\n    public GameController gamePrefab;\n    public int requiredLevel;\n    public string gameKey;\n}"
+        },
+        {
+          "label": "Drag and drop",
+          "code": "public void OnDrop(PointerEventData eventData)\n{\n    ResetScale();\n    var draggable = eventData.pointerDrag?.GetComponent<Draggable>();\n    if (draggable == null) return;\n    string droppedValue = draggable.GetValue();\n    Debug.Log($\"Comparing Drop: '{droppedValue}' vs Correct: '{correctValue}'\");\n    if (string.Equals(droppedValue, correctValue, StringComparison.OrdinalIgnoreCase))\n    {\n        if (placeholderGroup != null)\n            placeholderGroup.SetActive(false);\n        if (targetText != null)\n        {\n            targetText.gameObject.SetActive(true);\n            string replacement = MatchCasingToText(correctValue, placeholder, targetText.text, targetText.text.IndexOf(placeholder));\n            targetText.text = replacement;\n        }\n        Destroy(draggable.gameObject);\n        OnCorrectDrop?.Invoke();\n    }\n    else\n    {\n        OnWrongDrop?.Invoke();\n        draggable.ResetPosition();\n    }\n}"
+        },
+        {
+          "label": "Game initialization and setup",
+          "code": "public abstract void SetUpContent();\nvoid Start()\n{\n    if (gameData == null)\n    {\n        Init();\n    }\n    backButton.onClick.AddListener(GoBack);\n    ColorThemeManager.Instance.ApplyTheme();\n}\npublic void Init()\n{\n    gameData = GameSession.Instance.selectedGame;\n    topicData = GameSession.Instance.selectedTopic;\n    vocabularySet = topicData.vocabularySet;\n    if (gameData == null)\n    {\n        Debug.LogError(\"No GameData found in GameSession.\");\n        return;\n    }\n    if (titleText != null)\n    {\n        titleText.text = gameData.gameName;\n    }\n    SetUpContent();\n    ScoreManager.Instance.ResetGameScore(gameData.gameKey);\n}"
+        }
+      ]
+    },
+    {
+      "id": "project5",
+      "title": "Way of the Wolf",
+      "description": "Way of the Wolf is a 3D Unity-based prototype developed to showcase core gameplay systems in an Ice Age setting, where players control a lone wolf surviving in a frozen wilderness. The project focuses on system integration and gameplay mechanics rather than full narrative development.\n\nIt features foundational systems such as a real-time inventory, ability usage, and enemy AI using behavior trees, allowing for dynamic and reactive enemy behaviors. Players can equip weapons and trigger special skills.\n\nWith its focus on mechanics and system design, Way of the Wolf serves as a proof of concept for a potential full-scale survival-action experience.",
+      "media": [
+        { "label": "Inventory & equip weapons", "url": "Assets/WW/Videos/WWinventory.gif" },
+        { "label": "Skills", "url": "Assets/WW/Videos/WWSkills.gif" }
+      ],
+      "codeBlocks": [
+        {
+          "label": "Inventory System",
+          "code": "public class InventorySystem\n{\n    public event EventHandler OnItemListChanged;\n    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;\n    public List<InventoryItem> inventory { get; private set; }\n    private Action<InventoryItem> useItemAction;\n    public InventorySystem(Action<InventoryItem> useItemAction)\n    {\n        inventory = new List<InventoryItem>();\n        this.useItemAction = useItemAction;\n        m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();\n    }\n    public InventoryItem Get(InventoryItemData refData)\n    {\n        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))\n        {\n            return value;\n        }\n        return null;\n    }\n    public void Add(InventoryItemData refData)\n    {\n        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))\n        {\n            value.AddToSrack();\n        }\n        else\n        {\n            InventoryItem newItem = new InventoryItem(refData);\n            inventory.Add(newItem);\n            m_itemDictionary.Add(refData, newItem);\n        }\n        OnItemListChanged?.Invoke(this, EventArgs.Empty);\n    }\n    public void Remove(InventoryItemData refData)\n    {\n        if (m_itemDictionary.TryGetValue(refData, out InventoryItem value))\n        {\n            value.RemoveFromStack();\n            if (value.stackSize == 0)\n            {\n                inventory.Remove(value);\n                m_itemDictionary.Remove(refData);\n            }\n        }\n        OnItemListChanged?.Invoke(this, EventArgs.Empty);\n    }\n    public void UseItem(InventoryItem item)\n    {\n        useItemAction(item);\n    }\n}"
+        },
+        {
+          "label": "Skill state machine",
+          "code": "public class PlayerFSM_SkillUse : PlayerFSMState\n{\n    public PlayerFSM_SkillUse(PlayerController player) : base(player)\n    {\n        id = PlayerFSMStateType.SKILLUSE;\n    }\n    public override void Enter()\n    {\n        player.playerAnimator.SetBool(\"SkillUse\", true);\n    }\n    public override void Exit()\n    {\n        player.playerAnimator.SetBool(\"SkillUse\", false);\n    }\n    public override void Update()\n    {\n        if (player.itemEquiped.data.equipedSkill.CanUseSkill())\n        {\n            player.itemEquiped.data.equipedSkill.Activate(player);\n        }\n        if (player.itemEquiped.data != null)\n        {\n            if (player.itemEquiped.data.equipedSkill != null)\n            {\n                if (player.itemEquiped.data.equipedSkill.GetIsOnCooldown() == true)\n                {\n                    player.playerFSM.SetCurrentState(PlayerFSMStateType.NORMAL);\n                }\n            }\n        }\n    }\n}"
+        },
+        {
+          "label": "Equip Weapon",
+          "code": "private void EquipWeapon(InventoryItem item, Vector3 scale, Vector3 angle, Vector3 position)\n{\n    if (objectHolder.transform.childCount > 0)\n    {\n        for (int i = 0; i < objectHolder.transform.childCount; i++)\n        {\n            Destroy(objectHolder.transform.GetChild(i).gameObject);\n        }\n    }\n    GameObject weapon = Instantiate(item.data.prefab, objectHolder.transform.position, transform.rotation);\n    weapon.transform.parent = objectHolder.transform;\n    weapon.name = item.data.displayName;\n    weapon.SetActive(false);\n    itemEquiped = item;\n    if (itemEquiped.data.equipedSkill != null)\n    {\n        itemEquiped.data.equipedSkill.SetActive(false);\n        itemEquiped.data.equipedSkill.SetIsOnCooldown(false);\n    }\n    StartCoroutine(MaterializeAndDematerialize(weapon, scale,angle,position));\n}"
+        }
+      ]
+    }
+  ],
+  "teamProjects": [
+    {
+      "title": "Yeltic App",
+      "description": "Yeltic App is a modular educational and training platform developed by Yeltic for Mexican companies. It enables immersive learning on topics such as workplace safety, equipment maintenance, internal policies, onboarding procedures, and more. Built entirely in Unity, the app is designed to be flexible so that each company can deploy custom training content through downloadable modules.",
+      "details": [
+        "The application is available exclusively for mobile devices and is distributed via Google Play and App Store. Its modular architecture leverages Unity Addressables to deliver dynamic content and scenarios tailored to each client."
+      ],
+      "responsibilities": [
+        "Implemented navigation between training modules and UI screens using a centralized screen manager system.",
+        "Integrated Firebase Authentication and Realtime Database to manage user logins and fetch personalized content.",
+        "Developed logic to download and cache training modules via Unity Addressables system.",
+        "Handled platform-specific publishing, including iOS builds, provisioning profiles, and App Store submission.",
+        "Ensured cross-device compatibility across Android and iOS, optimizing UI layout and performance."
+      ]
+    },
+    {
+      "title": "Sedena: Exposure Therapies",
+      "description": "Developed by Yeltic for the Mexican Army (Sedena), this VR and CAVE-mode experience is used by military psychologists to conduct exposure therapy sessions. The goal is to simulate everyday high-stress situations—such as domestic or workplace harassment—to help individuals build coping strategies in a safe, controlled environment.",
+      "details": [
+        "The application is built with Unity and leverages Timeline sequences to replicate realistic sessions based on psychologist-approved scripts. It also connects to a secure server to store and retrieve patient data, making it a functional clinical tool as well as an immersive training platform."
+      ],
+      "responsibilities": [
+        "Replicated therapy sessions using Timeline and designer-provided scripts to ensure narrative and visual fidelity.",
+        "Managed session data recording and retrieval from the server, including patient-specific logs and events.",
+        "Displayed session feedback and results within the Unity interface for therapist analysis.",
+        "Published the app to Meta Quest using Meta Quest Developer Hub with proper testing and deployment procedures."
+      ]
+    },
+    {
+      "title": "TEC: Virtual Factory",
+      "description": "Developed by Yeltic for Tecnológico de Monterrey, this VR and PC-mode application simulates an interactive factory environment for Industrial Engineering students. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through immersive learning.",
+      "details": [
+        "The platform stores each student’s progress and test results in a secure server, enabling instructors to review performance and adjust training accordingly. The application can run in both VR headsets and PCs, making it accessible for different hardware setups."
+      ],
+      "responsibilities": [
+        "Implemented the student login system with secure encryption to protect personal data during storage and transmission.",
+        "Developed PC-mode movement and interaction logic to mimic VR navigation using keyboard and mouse.",
+        "Created structured evaluation tests for students based on academic scripts provided by educators."
+      ]
+    },
+    {
+      "title": "ILCE: We Are the Future",
+      "description": "Developed by Yeltic for ILCE, this educational application teaches young students about the environmental impact of pollution in Mexico.",
+      "details": [
+        "I was the sole developer responsible for building the entire application. It features cross-compatible content that seamlessly runs in both VR and CAVE setups. Built with Unity and published using Meta Quest Developer Hub, the app guides users through narrated environments that illustrate the consequences of pollution and encourage reflection on sustainable actions."
+      ],
+      "responsibilities": [
+        "Designed and implemented the full VR experience, including environments and interactive elements.",
+        "Built a system to dynamically share content between VR and CAVE modes with minimal duplication.",
+        "Created narrative sequences using Unity Timeline based on storyboards and scripts provided by educators.",
+        "Integrated SALSA LipSync for character animations and synchronized dialogue delivery.",
+        "Managed additive scene loading and modular content structure for performance and scalability.",
+        "Handled build and deployment through Meta Quest Developer Hub for VR headsets."
+      ]
+    }
+  ]
+}
