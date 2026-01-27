@@ -1,103 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Javier Fuente - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javier Fuente - Unity Developer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Inter", "Arial"],
+            mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "monospace"],
+          },
+          boxShadow: {
+            glow: "0 0 0 1px rgba(59,130,246,.25), 0 8px 30px rgba(0,0,0,.35)",
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 font-mono">
-    <div class="max-w-4xl mx-auto p-6">
-        <!-- Header -->
-        <header class="mb-8 text-center">
-            <h1 class="text-5xl font-extrabold text-blue-400 mb-2">Javier Fuente</h1>
-            <p class="text-lg text-gray-400">Unity Game Developer</p>
-        </header>
 
-        <!-- Tabs -->
-        <nav class="mb-8 flex flex-wrap gap-2 justify-center">
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-blue-700 text-white font-semibold focus:outline-none" data-tab="about">About</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-700 text-blue-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-tab="demo-reel">Demo Reel</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-700 text-blue-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-tab="projects">Solo Projects</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-700 text-blue-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-tab="teamprojects">Team Projects</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-700 text-blue-300 hover:bg-blue-700 hover:text-white focus:outline-none" data-tab="contact">Contact</button>
-        </nav>
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-gray-100 font-sans">
+  <div class="max-w-5xl mx-auto px-6 py-10">
 
-        <!-- About -->
-        <section id="about" class="tab-content mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600">
-            <h2 class="text-2xl font-semibold text-blue-300 mb-4">About Me</h2>
-            <p class="text-gray-300 leading-relaxed">
-                I'm Javier Fuente, a game developer specialized in Unity. I love building interactive experiences that blend design, code, and storytelling.
-                In this portfolio, you’ll find a selection of my most relevant projects — from educational apps to 2D platformers with advanced AI.
-                I have hands-on experience with Addressables, XR Toolkit, DOTween animations, shaders, gameplay logic, and VR development for both educational institutions and personal projects.
+    <!-- HERO -->
+    <header class="mb-10">
+      <div class="rounded-3xl border border-gray-800 bg-gray-900/40 backdrop-blur-xl shadow-glow p-7 md:p-10 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative">
+          <div>
+            <p class="text-sm text-gray-400 mb-2">Unity Developer · XR (VR/AR) · Gameplay & Systems · Addressables · Python AI</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+              Javier <span class="text-blue-400">Fuente</span>
+            </h1>
+            <p class="mt-4 text-gray-300 leading-relaxed max-w-2xl">
+            Unity Developer focused on immersive, production-ready experiences: VR/AR interaction, gameplay systems,
+            and modular content pipelines (Addressables). I’ve shipped educational and training apps across Quest, PC/CAVE, and mobile,
+            with strong emphasis on clean architecture, performance, and UX.
+            I also build Python AI tools (RAG + evaluation) to improve workflows and quality.
             </p>
-        </section>
-        <!-- Demo Reel -->
-        <section id="demo-reel" class="tab-content mb-12 hidden">
-            <h2 class="text-2xl font-semibold mb-4">Demo Reel</h2>
-            <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-md">
-                <iframe
-                    src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
-                    frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                    allowfullscreen title="DemoReel" class="absolute top-0 left-0 w-full h-full">
-                </iframe>
-            </div>
-        </section>
-        <!-- Solo Projects -->
-        <section id="projects" class="tab-content mb-12 hidden"></section>
-        <!-- Team Projects -->
-        <section id="teamprojects" class="tab-content mb-12 hidden"></section>
-        <!-- Contact -->
-        <!-- ...El resto igual... -->
-        <!-- Contact -->
-        <section id="contact" class="tab-content mb-12 bg-gray-700/40 backdrop-blur-lg shadow-lg p-6 rounded-xl border border-gray-600 hidden">
-            <h2 class="text-2xl font-semibold text-blue-300 mb-4 flex items-center gap-2">
-                <svg id="lucide-mail" width="24" height="24"></svg>
-                Contact
-            </h2>
-            <p class="mb-4 text-gray-300">Let's connect! You can reach me at:</p>
-            <ul class="text-gray-200 space-y-4">
-                <li class="flex items-center gap-2">
-                    <svg id="lucide-mail-2" width="20" height="20"></svg>
-                    <span>
-                        Email: 
-                        <a href="mailto:javierfm.dev@gmail.com" class="text-blue-400 underline">javierfm.dev@gmail.com</a>
-                    </span>
-                </li>
-                <li class="flex items-center gap-2">
-                    <svg id="lucide-discord" width="20" height="20"></svg>
-                    <span>
-                        Discord: 
-                        <span class="bg-gray-800 px-2 py-1 rounded text-blue-400 font-mono select-all">javierfuente</span>
-                    </span>
-                </li>
-            </ul>
-        </section>
-    </div>
-    <!-- Lucide icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        // Lucide icons (esto ya pone los íconos en los svg por id)
-        lucide.createIcons();
 
-        // Tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove "active" styles
-                document.querySelectorAll('.tab-btn').forEach(b => {
-                    b.classList.remove('bg-blue-700', 'text-white');
-                    b.classList.add('bg-gray-700', 'text-blue-300');
-                });
-                this.classList.remove('bg-gray-700', 'text-blue-300');
-                this.classList.add('bg-blue-700', 'text-white');
-                // Show only selected tab content
-                document.querySelectorAll('.tab-content').forEach(sec => sec.classList.add('hidden'));
-                document.getElementById(this.dataset.tab).classList.remove('hidden');
-            });
-        });
-        // Show About tab by default
-        document.querySelector('.tab-btn[data-tab="about"]').click();
-    </script>
-    <script src="main.js"></script>
+
+            <!-- QUICK HIGHLIGHTS -->
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Addressables</span>
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">XR Interaction Toolkit</span>
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">DOTween</span>
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Timeline</span>
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Mobile (Android/iOS)</span>
+              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Firebase</span>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button class="tab-btn px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition"
+                      data-tab="demo-reel">
+                Watch Demo Reel
+              </button>
+
+              <!-- opcional: pon aquí tu PDF real -->
+              <a href="Assets/CV_Javier_Fuente.pdf" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
+                Download CV
+              </a>
+
+              <a href="mailto:javierfm.dev@gmail.com" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
+                Email Me
+              </a>
+
+              <!-- si tienes GitHub/LinkedIn, agrega -->
+              <!--
+              <a href="https://github.com/..." class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700">GitHub</a>
+              <a href="https://www.linkedin.com/in/..." class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700">LinkedIn</a>
+              -->
+            </div>
+          </div>
+
+          <!-- mini “card” -->
+          <div class="md:w-[320px] rounded-2xl border border-gray-800 bg-gray-950/40 p-5">
+            <p class="text-xs text-gray-400">Currently focused on</p>
+            <p class="mt-2 text-sm text-gray-200 leading-relaxed">
+                Focused on Unity systems that scale: modular content delivery (Addressables), XR interaction, and robust UI/gameplay flow —
+                with AI tooling in Python to measure and improve quality.
+            </p>
+
+            <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+              <div class="rounded-xl border border-gray-800 bg-gray-900/40 p-3">
+                <p class="text-gray-400">Platforms</p>
+                <p class="font-semibold text-gray-100 mt-1">Quest · PC · Mobile</p>
+              </div>
+              <div class="rounded-xl border border-gray-800 bg-gray-900/40 p-3">
+                <p class="text-gray-400">Strength</p>
+                <p class="font-semibold text-gray-100 mt-1">Systems & UX flow</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="mb-8 flex flex-wrap gap-2 items-center">
+      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
+              data-tab="about">About</button>
+      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
+              data-tab="demo-reel">Demo Reel</button>
+      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
+              data-tab="projects">Solo Projects</button>
+      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
+              data-tab="teamprojects">Team Projects</button>
+      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
+              data-tab="contact">Contact</button>
+    </nav>
+
+    <!-- ABOUT -->
+    <section id="about" class="tab-content hidden">
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
+        <h2 class="text-2xl font-bold text-blue-300 mb-3">About Me</h2>
+        <p class="text-gray-300 leading-relaxed">
+        I’m José Javier Fuente Meza (Javi), a Unity Developer specialized in XR (VR/AR) and interactive systems.
+        I enjoy building experiences that feel solid and ship-ready: clear UI flows, responsive interactions,
+        scalable architecture, and performance-focused implementations.
+        Professionally, I’ve worked on educational, therapeutic, and industrial training applications,
+        handling feature development end-to-end and supporting deployment workflows (including iOS pipeline work).
+        In parallel, I develop Python AI tooling (RAG assistants and automated evaluation) to measure quality and reduce iteration time.
+        I’m looking for roles where I can combine strong Unity systems work with real product impact.
+        </p>
+
+
+        <!-- FEATURED PROJECTS (se llena desde main.js) -->
+        <div class="mt-8">
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <h3 class="text-lg font-semibold text-gray-100">Featured Projects</h3>
+            <p class="text-sm text-gray-400">Quick selection for recruiters</p>
+          </div>
+          <div id="featured" class="grid md:grid-cols-3 gap-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO REEL -->
+    <section id="demo-reel" class="tab-content hidden">
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
+        <h2 class="text-2xl font-bold text-blue-300 mb-4">Demo Reel</h2>
+        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-gray-800">
+          <iframe
+            src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            allowfullscreen
+            title="DemoReel"
+            class="absolute top-0 left-0 w-full h-full">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLO PROJECTS -->
+    <section id="projects" class="tab-content hidden"></section>
+
+    <!-- TEAM PROJECTS -->
+    <section id="teamprojects" class="tab-content hidden"></section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="tab-content hidden">
+      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
+        <h2 class="text-2xl font-bold text-blue-300 mb-4">Contact</h2>
+        <p class="mb-4 text-gray-300">Let's connect.</p>
+        <ul class="text-gray-200 space-y-4">
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            <span>Email: <a href="mailto:javierfm.dev@gmail.com" class="text-blue-400 underline">javierfm.dev@gmail.com</a></span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            <span>Discord: <span class="bg-gray-950/60 px-2 py-1 rounded text-blue-300 font-mono select-all">javierfuente</span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODAL (para media) -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/70 p-4 z-50">
+    <div class="w-full max-w-4xl rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800">
+        <p id="modalTitle" class="text-sm text-gray-200 font-semibold">Media</p>
+        <button id="modalClose" class="px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100">
+          Close
+        </button>
+      </div>
+      <div class="p-4">
+        <img id="modalImg" src="" alt="" class="w-full rounded-xl border border-gray-800" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tabs
+    function setActiveTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(tabId)?.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
+        b.classList.add('bg-gray-800', 'text-gray-200', 'border-gray-700');
+      });
+
+      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (btn) {
+        btn.classList.remove('bg-gray-800', 'text-gray-200', 'border-gray-700');
+        btn.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
+      }
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
+    });
+
+    // Default tab
+    setActiveTab('about');
+
+    // Modal
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalClose = document.getElementById('modalClose');
+
+    window.openMedia = function(title, url) {
+      modalTitle.textContent = title || "Media";
+      modalImg.src = url;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modalImg.src = "";
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // Copy code helper
+    window.copyCode = async function(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.innerText;
+      await navigator.clipboard.writeText(text);
+      const btn = document.querySelector(`[data-copy="${id}"]`);
+      if (btn) {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 900);
+      }
+    };
+  </script>
+
+  <script src="main.js"></script>
 </body>
 </html>
