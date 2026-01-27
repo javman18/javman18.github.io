@@ -38,13 +38,13 @@
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
               Javier <span class="text-blue-400">Fuente</span>
             </h1>
-            <p class="mt-4 text-gray-300 leading-relaxed max-w-2xl">
-            Unity Developer focused on immersive, production-ready experiences: VR/AR interaction, gameplay systems,
-            and modular content pipelines (Addressables). I’ve shipped educational and training apps across Quest, PC/CAVE, and mobile,
-            with strong emphasis on clean architecture, performance, and UX.
-            I also build Python AI tools (RAG + evaluation) to improve workflows and quality.
-            </p>
 
+            <p class="mt-4 text-gray-300 leading-relaxed max-w-2xl">
+              Unity Developer focused on immersive, production-ready experiences: VR/AR interaction, gameplay systems,
+              and modular content pipelines (Addressables). I’ve shipped educational and training apps across Quest, PC/CAVE, and mobile,
+              with strong emphasis on clean architecture, performance, and UX. I also build Python AI tools (RAG + evaluation)
+              to improve workflows and quality.
+            </p>
 
             <!-- QUICK HIGHLIGHTS -->
             <div class="mt-5 flex flex-wrap gap-2">
@@ -61,34 +61,29 @@
 
             <!-- CTA -->
             <div class="mt-6 flex flex-wrap gap-3">
-              <button class="tab-btn px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition"
+              <button class="tab-btn px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition border border-blue-500"
                       data-tab="demo-reel">
                 Watch Demo Reel
               </button>
 
-              <!-- opcional: pon aquí tu PDF real -->
-              <a href="Assets/CV_Javier_Fuente.pdf" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
+              <a href="Assets/CV_Javier_Fuente.pdf" target="_blank" rel="noopener"
+                 class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
                 Download CV
               </a>
 
-              <a href="mailto:javierfm.dev@gmail.com" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
+              <a href="mailto:javierfm.dev@gmail.com"
+                 class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
                 Email Me
               </a>
-
-              <!-- si tienes GitHub/LinkedIn, agrega -->
-              <!--
-              <a href="https://github.com/..." class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700">GitHub</a>
-              <a href="https://www.linkedin.com/in/..." class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700">LinkedIn</a>
-              -->
             </div>
           </div>
 
-          <!-- mini “card” -->
+          <!-- mini card -->
           <div class="md:w-[320px] rounded-2xl border border-gray-800 bg-gray-950/40 p-5">
             <p class="text-xs text-gray-400">Currently focused on</p>
             <p class="mt-2 text-sm text-gray-200 leading-relaxed">
-                Focused on Unity systems that scale: modular content delivery (Addressables), XR interaction, and robust UI/gameplay flow —
-                with AI tooling in Python to measure and improve quality.
+              Focused on Unity systems that scale: modular content delivery (Addressables), XR interaction,
+              and robust UI/gameplay flow — with AI tooling in Python to measure and improve quality.
             </p>
 
             <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
@@ -126,17 +121,15 @@
       <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
         <h2 class="text-2xl font-bold text-blue-300 mb-3">About Me</h2>
         <p class="text-gray-300 leading-relaxed">
-        I’m José Javier Fuente Meza (Javi), a Unity Developer specialized in XR (VR/AR) and interactive systems.
-        I enjoy building experiences that feel solid and ship-ready: clear UI flows, responsive interactions,
-        scalable architecture, and performance-focused implementations.
-        Professionally, I’ve worked on educational, therapeutic, and industrial training applications,
-        handling feature development end-to-end and supporting deployment workflows (including iOS pipeline work).
-        In parallel, I develop Python AI tooling (RAG assistants and automated evaluation) to measure quality and reduce iteration time.
-        I’m looking for roles where I can combine strong Unity systems work with real product impact.
+          I’m José Javier Fuente Meza (Javi), a Unity Developer specialized in XR (VR/AR) and interactive systems.
+          I enjoy building experiences that feel solid and ship-ready: clear UI flows, responsive interactions,
+          scalable architecture, and performance-focused implementations.
+          Professionally, I’ve worked on educational, therapeutic, and industrial training applications,
+          handling feature development end-to-end and supporting deployment workflows (including iOS pipeline work).
+          In parallel, I develop Python AI tooling (RAG assistants and automated evaluation) to measure quality and reduce iteration time.
+          I’m looking for roles where I can combine strong Unity systems work with real product impact.
         </p>
 
-
-        <!-- FEATURED PROJECTS (se llena desde main.js) -->
         <div class="mt-8">
           <div class="flex items-center justify-between gap-4 mb-4">
             <h3 class="text-lg font-semibold text-gray-100">Featured Projects</h3>
@@ -190,7 +183,7 @@
 
   </div>
 
-  <!-- MODAL (para media) -->
+  <!-- MODAL -->
   <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/70 p-4 z-50">
     <div class="w-full max-w-4xl rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
       <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800">
@@ -227,7 +220,6 @@
       btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
     });
 
-    // Default tab
     setActiveTab('about');
 
     // Modal
@@ -252,7 +244,7 @@
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // Copy code helper
+    // Copy code helper (used by main.js UI)
     window.copyCode = async function(id) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -267,6 +259,6 @@
     };
   </script>
 
-  <script src="main.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>

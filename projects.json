@@ -159,6 +159,26 @@
         "Managed additive scene loading and modular content structure for performance and scalability.",
         "Handled build and deployment through Meta Quest Developer Hub for VR headsets."
       ]
+    },
+    {
+      "title": "LLM Personality Evaluation Framework",
+      "description": "LLM Personality Evaluation Framework is an internal research and evaluation system developed to assess and control the personality of Large Language Model (LLM) agents using structured psychological methodologies. The project adapts human personality assessment techniques—specifically the OCEAN (Big Five) model—into a reproducible framework for AI agents.\n\nThe system evaluates personality through standardized inventories, where agents are conditioned via prompt engineering and later assessed using numeric-only response prompts. These responses are aggregated to produce quantitative personality scores, enabling objective comparison between agents, prompts, and pipeline configurations.\n\nThe framework was designed to support experimentation across multiple variants, allowing systematic analysis of how retrieval strategies, embeddings, chunking parameters, and prompt structures influence personality consistency and expressiveness in LLM-based agents.",
+      "details": [
+        "Internal R&D project focused on personality evaluation and controllability of LLM agents.",
+        "Based on the OCEAN (Big Five) personality model adapted for AI evaluation.",
+        "Supports multiple experimental pipelines (A/B/C variants) for controlled comparison.",
+        "Designed to be model-agnostic and extensible for future inventories and evaluation strategies."
+      ],
+      "responsibilities": [
+        "Researched human personality evaluation methodologies to understand how personality is formally measured in psychology.",
+        "Investigated existing work on personality evaluation in Large Language Models.",
+        "Documented findings and translated psychological concepts into technical evaluation criteria.",
+        "Designed the full evaluation pipeline, including retriever strategy, embeddings, vector store, chunking logic, and top-k selection.",
+        "Implemented the framework in Python with multiple experimental variants to compare prompt and pipeline configurations.",
+        "Developed a methodology to compare and normalize different personality inventories using equivalence techniques.",
+        "Analyzed results to assess personality stability and variance across models and configurations."
+      ]
     }
+
   ]
 }
