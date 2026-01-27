@@ -18,9 +18,11 @@ function inferTags(project) {
   if (t.includes("addressable")) tags.push("Addressables");
   if (t.includes("behavior tree")) tags.push("Behavior Trees");
   if (t.includes("firebase")) tags.push("Firebase");
-  if (t.includes("mobile") || t.includes("android") || t.includes("ios")) tags.push("Mobile");
+  if (t.includes("mobile") || t.includes("android") || t.includes(" ios")) tags.push("Mobile");
   if (t.includes("timeline")) tags.push("Timeline");
   if (t.includes("pathfinding") || t.includes("a*")) tags.push("Pathfinding");
+  if (t.includes("ai")) tags.push ("AI");
+  if (t.includes("steering behaviors")) tags.push ("Steering Behaviors");
   return [...new Set(tags)].slice(0, 5);
 }
 
