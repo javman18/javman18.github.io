@@ -178,7 +178,27 @@
         "Developed a methodology to compare and normalize different personality inventories using equivalence techniques.",
         "Analyzed results to assess personality stability and variance across models and configurations."
       ]
-    }
+    },
+    {
+  "title": "TIST: WhatsApp RAG Chatbot",
+  "description": "TIST: WhatsApp RAG Chatbot is a production-oriented conversational assistant integrated with WhatsApp, designed to answer user questions using Retrieval-Augmented Generation (RAG). The system grounds responses on internal documents and curated knowledge sources to reduce hallucinations and provide consistent, context-aware answers.",
+  "details": [
+    "WhatsApp-based conversational interface for real users (customer/support-style flows).",
+    "RAG pipeline using FAISS as the vector store for fast similarity search over embedded chunks.",
+    "Designed to support iterative tuning of chunk size, top-k retrieval, and prompt templates to improve answer faithfulness and relevance."
+  ],
+  "responsibilities": [
+    "Implemented the end-to-end RAG pipeline: ingestion, chunking, embeddings, FAISS indexing, retrieval, and response generation.",
+    "Designed retrieval strategies (top-k tuning, chunk-size experiments, and prompt structure) to improve grounded answers and reduce hallucinations.",
+    "Built evaluation signals to monitor quality (e.g., faithfulness, context relevance, and recall-style checks) and diagnose failure cases.",
+    "Integrated the chatbot with WhatsApp messaging flow, including user session handling and message normalization.",
+    "Implemented caching and document refresh workflows to keep the index updated as source content changes.",
+    "Added guardrails for safe responses and fallback behaviors when relevant context is missing or low-confidence."
+  ]
+}
+
+
+    
 
   ]
 }
