@@ -1,14 +1,15 @@
 // Helpers
 window.toggleSection = function(id) {
   const content = document.getElementById(id);
-  if (content) content.classList.toggle('hidden');
+  if (content) content.classList.toggle("hidden");
 };
 
 async function fetchProjects() {
-  const response = await fetch('./projects.json', { cache: "no-store" });
+  const response = await fetch("./projects.json", { cache: "no-store" });
   if (!response.ok) throw new Error(`Could not load projects.json (HTTP ${response.status})`);
   return await response.json();
 }
+
 function slugify(str) {
   return (str || "")
     .toLowerCase()
@@ -29,7 +30,7 @@ function inferTags(project) {
   const tags = [];
   if (source.includes("vr")) tags.push("VR");
   if (source.includes("cave")) tags.push("CAVE");
-  if (source.includes("addressable")) tags.push("Addressables"); // matchea Addressables
+  if (source.includes("addressable")) tags.push("Addressables");
   if (source.includes("behavior tree") || source.includes("behaviour tree")) tags.push("Behavior Trees");
   if (source.includes("firebase")) tags.push("Firebase");
   if (source.includes("mobile") || source.includes("android") || source.includes("ios") || source.includes("app store") || source.includes("google play")) tags.push("Mobile");
@@ -41,11 +42,74 @@ function inferTags(project) {
   return [...new Set(tags)].slice(0, 5);
 }
 
-
-
-function firstMediaUrl(project) {
-  return project.media && project.media.length ? project.media[0].url : null;
+// --- Media helpers (NEW) ---
+function mediaType(m) {
+  const url = (m?.url || "").toLowerCase();
+  if (m?.type) return m.type; // "video" | "image"
+  if (url.endsWith(".mp4") || url.endsWith(".webm")) return "video";
+  return "image";
 }
+
+function firstMedia(project) {
+  return project.media && project.media.length ? project.media[0] : null;
+}
+
+function renderMediaThumb(m, className = "w-full h-40 object-cover border-b border-gray-800") {
+  const type = mediaType(m);
+
+  if (type === "video") {
+    // NOTE: assumes MP4 (fine for your case). If you use webm, add another <source>.
+    return `
+      <video class="${className}" autoplay loop muted playsinline preload="metadata">
+        <source src="${m.url}" type="video/mp4">
+      </video>
+    `;
+  }
+
+  return `<img src="${m.url}" class="${className}" alt="${m.label || ""}">`;
+}
+
+// --- Modal open (NEW) ---
+// Requires your HTML to have: #mediaModal, #mediaModalTitle, #mediaModalBody
+window.openMedia = function(title, url, type = "image") {
+  const modal = document.getElementById("mediaModal");
+  const modalTitle = document.getElementById("mediaModalTitle");
+  const modalBody = document.getElementById("mediaModalBody");
+
+  if (!modal || !modalTitle || !modalBody) {
+    // Fallback: open in new tab if no modal exists
+    window.open(url, "_blank");
+    return;
+  }
+
+  modalTitle.textContent = title || "";
+
+  if (type === "video") {
+    modalBody.innerHTML = `
+      <video controls autoplay class="w-full rounded-xl">
+        <source src="${url}" type="video/mp4">
+      </video>
+    `;
+  } else {
+    modalBody.innerHTML = `
+      <img src="${url}" class="w-full rounded-xl" alt="${title || ""}">
+    `;
+  }
+
+  modal.classList.remove("hidden");
+};
+
+window.closeMedia = function() {
+  const modal = document.getElementById("mediaModal");
+  const modalBody = document.getElementById("mediaModalBody");
+  if (modalBody) modalBody.innerHTML = "";
+  if (modal) modal.classList.add("hidden");
+};
+
+// Optional: close modal with ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") window.closeMedia?.();
+});
 
 function renderFeatured(projects) {
   const featuredEl = document.getElementById("featured");
@@ -61,15 +125,15 @@ function renderFeatured(projects) {
   const picked = sorted.slice(0, 3);
 
   featuredEl.innerHTML = picked.map((p) => {
-    const thumb = firstMediaUrl(p);
+    const thumb = firstMedia(p);
     const tags = inferTags(p);
     const safeTitle = (p.title || "").replace(/'/g, "\\'");
 
     return `
       <div class="rounded-2xl border border-gray-800 bg-gray-950/40 overflow-hidden hover:shadow-glow transition">
         ${thumb ? `
-          <button class="w-full" onclick="openMedia('${safeTitle}', '${thumb}')">
-            <img src="${thumb}" alt="${p.title}" class="w-full h-40 object-cover border-b border-gray-800"/>
+          <button class="w-full" onclick="openMedia('${safeTitle}', '${thumb.url}', '${mediaType(thumb)}')">
+            ${renderMediaThumb(thumb, "w-full h-40 object-cover border-b border-gray-800")}
           </button>
         ` : `
           <div class="h-40 border-b border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950"></div>
@@ -100,7 +164,7 @@ function renderFeatured(projects) {
 }
 
 function renderSoloProjects(projects) {
-  const section = document.getElementById('projects');
+  const section = document.getElementById("projects");
   if (!section) return;
 
   section.innerHTML = `
@@ -111,7 +175,7 @@ function renderSoloProjects(projects) {
   `;
 
   projects.forEach((proj, idx) => {
-    const thumb = firstMediaUrl(proj);
+    const thumb = firstMedia(proj);
     const tags = inferTags(proj);
     const safeTitle = (proj.title || "").replace(/'/g, "\\'");
 
@@ -120,8 +184,8 @@ function renderSoloProjects(projects) {
         <div class="grid md:grid-cols-[220px_1fr] gap-0">
           <div class="border-b md:border-b-0 md:border-r border-gray-800 bg-gray-950/40">
             ${thumb ? `
-              <button class="w-full" onclick="openMedia('${safeTitle}', '${thumb}')">
-                <img src="${thumb}" class="w-full h-44 md:h-full object-cover" alt="${proj.title}">
+              <button class="w-full" onclick="openMedia('${safeTitle}', '${thumb.url}', '${mediaType(thumb)}')">
+                ${renderMediaThumb(thumb, "w-full h-44 md:h-full object-cover")}
               </button>
             ` : `
               <div class="w-full h-44 md:h-full bg-gradient-to-br from-gray-900 to-gray-950"></div>
@@ -174,17 +238,17 @@ function renderSoloProjects(projects) {
                   <div id="media${idx}" class="mt-4 grid md:grid-cols-2 gap-4">
                     ${proj.media.map(m => `
                       <button class="text-left rounded-xl border border-gray-800 bg-gray-900/30 hover:bg-gray-900/60 overflow-hidden transition"
-                              onclick="openMedia('${(m.label || proj.title || '').replace(/'/g,"\\'")}', '${m.url}')">
-                        <img src="${m.url}" class="w-full h-40 object-cover border-b border-gray-800" alt="${m.label}">
+                              onclick="openMedia('${(m.label || proj.title || "").replace(/'/g, "\\'")}', '${m.url}', '${mediaType(m)}')">
+                        ${renderMediaThumb(m, "w-full h-40 object-cover border-b border-gray-800")}
                         <div class="p-3">
                           <p class="text-sm font-semibold text-gray-100">${m.label || ""}</p>
                           <p class="text-xs text-gray-400 mt-1">Click to expand</p>
                         </div>
                       </button>
-                    `).join('')}
+                    `).join("")}
                   </div>
                 </section>
-              ` : ''}
+              ` : ""}
 
               ${(proj.codeBlocks && proj.codeBlocks.length) ? `
                 <section class="rounded-xl border border-gray-800 bg-gray-950/30 p-4">
@@ -199,7 +263,7 @@ function renderSoloProjects(projects) {
                   <div id="codeBlock${idx}" class="mt-4 space-y-4">
                     ${proj.codeBlocks.map((c, cidx) => {
                       const codeId = `code_${idx}_${cidx}`;
-                      const codeText = (c.code || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+                      const codeText = (c.code || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
                       return `
                         <div class="rounded-xl border border-gray-800 bg-black/40 overflow-hidden">
                           <div class="flex items-center justify-between px-3 py-2 border-b border-gray-800">
@@ -218,10 +282,10 @@ function renderSoloProjects(projects) {
                           <pre id="${codeId}" class="hidden p-4 overflow-x-auto text-sm text-green-200 font-mono whitespace-pre">${codeText}</pre>
                         </div>
                       `;
-                    }).join('')}
+                    }).join("")}
                   </div>
                 </section>
-              ` : ''}
+              ` : ""}
             </div>
           </div>
         </div>
@@ -231,7 +295,7 @@ function renderSoloProjects(projects) {
 }
 
 function renderTeamProjects(projects) {
-  const section = document.getElementById('teamprojects');
+  const section = document.getElementById("teamprojects");
   if (!section) return;
 
   section.innerHTML = `
@@ -244,7 +308,7 @@ function renderTeamProjects(projects) {
   projects.forEach((proj, idx) => {
     const responsibilities = Array.isArray(proj.responsibilities) ? proj.responsibilities : [];
     const details = Array.isArray(proj.details) ? proj.details : [];
-    const tags = inferTags(proj); // ✅ aquí
+    const tags = inferTags(proj);
 
     section.innerHTML += `
       <article class="mb-6 rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
@@ -273,9 +337,9 @@ function renderTeamProjects(projects) {
         <div id="${proj.id}" class="hidden mt-5 space-y-4">
           ${details.length ? `
             <div class="rounded-xl border border-gray-800 bg-gray-950/30 p-4 space-y-2">
-              ${details.map(d => `<p class="text-gray-300">${d}</p>`).join('')}
+              ${details.map(d => `<p class="text-gray-300">${d}</p>`).join("")}
             </div>
-          ` : ''}
+          ` : ""}
 
           ${(proj.media && proj.media.length) ? `
             <div class="rounded-xl border border-gray-800 bg-gray-950/30 p-4">
@@ -289,23 +353,23 @@ function renderTeamProjects(projects) {
               <div id="teammedia${idx}" class="mt-4 grid md:grid-cols-2 gap-4">
                 ${proj.media.map(m => `
                   <button class="text-left rounded-xl border border-gray-800 bg-gray-900/30 hover:bg-gray-900/60 overflow-hidden transition"
-                          onclick="openMedia('${(m.label || proj.title || '').replace(/'/g,"\\'")}', '${m.url}')">
-                    <img src="${m.url}" class="w-full h-40 object-cover border-b border-gray-800" alt="${m.label}">
+                          onclick="openMedia('${(m.label || proj.title || "").replace(/'/g, "\\'")}', '${m.url}', '${mediaType(m)}')">
+                    ${renderMediaThumb(m, "w-full h-40 object-cover border-b border-gray-800")}
                     <div class="p-3">
                       <p class="text-sm font-semibold text-gray-100">${m.label || ""}</p>
                       <p class="text-xs text-gray-400 mt-1">Click to expand</p>
                     </div>
                   </button>
-                `).join('')}
+                `).join("")}
               </div>
             </div>
-          ` : ''}
+          ` : ""}
 
           <div class="rounded-xl border border-gray-800 bg-gray-950/30 p-4">
             <p class="text-gray-100 font-semibold mb-2">Key Responsibilities</p>
             ${responsibilities.length ? `
               <ul class="list-disc list-inside text-gray-300 space-y-1">
-                ${responsibilities.map(r => `<li>${r}</li>`).join('')}
+                ${responsibilities.map(r => `<li>${r}</li>`).join("")}
               </ul>
             ` : `
               <p class="text-gray-400 text-sm">No responsibilities listed in JSON.</p>
@@ -317,7 +381,6 @@ function renderTeamProjects(projects) {
   });
 }
 
-
 // Boot (wait for DOM so #teamprojects exists 100%)
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -325,14 +388,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const solo = data.soloProjects || [];
 
-    // ✅ team con id real (y consistente con lo que renderTeamProjects usa)
+    // team con id real (y consistente con lo que renderTeamProjects usa)
     const team = (data.teamProjects || []).map((p) => ({
       ...p,
       id: p.id || `team_${slugify(p.title)}`,
       _tab: "teamprojects",
     }));
 
-    // ✅ featured híbrido
+    // featured híbrido
     const featuredPool = [...solo, ...team];
 
     renderFeatured(featuredPool);
@@ -343,9 +406,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Loaded teamProjects:", team.length);
   } catch (err) {
     console.error("ERROR fetch projects:", err);
-    document.getElementById('projects').innerHTML =
+    document.getElementById("projects").innerHTML =
       `<p class='text-red-400'>Could not load project data: ${err.message}</p>`;
-    document.getElementById('teamprojects').innerHTML =
+    document.getElementById("teamprojects").innerHTML =
       `<p class='text-red-400'>Could not load project data: ${err.message}</p>`;
   }
 });

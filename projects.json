@@ -159,6 +159,13 @@
       "details": [
         "I was the sole developer responsible for building the entire application. It features cross-compatible content that seamlessly runs in both VR and CAVE setups. Built with Unity and published using Meta Quest Developer Hub, the app guides users through narrated environments that illustrate the consequences of pollution and encourage reflection on sustainable actions."
       ],
+      "media": [
+    {
+      "label": "VR Experience Demo",
+      "url": "Assets/ILCE/Videos/ilce.mp4",
+      "type": "video"
+    }
+  ],
       "responsibilities": [
         "Designed and implemented the full VR experience, including environments and interactive elements.",
         "Built a system to dynamically share content between VR and CAVE modes with minimal duplication.",
