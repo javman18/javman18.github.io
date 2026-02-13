@@ -51,7 +51,7 @@ function renderFeatured(projects) {
   const featuredEl = document.getElementById("featured");
   if (!featuredEl) return;
 
-  const priority = ["Play & Learn", "TIST: WhatsApp RAG Chatbot", "Bimbo: Professional Driver Workshop"];
+  const priority = ["Play & Learn", "TEC: Virtual Factory", "Bimbo: Professional Driver Workshop"];
   const sorted = [...projects].sort((a, b) => {
     const ai = priority.indexOf(a.title);
     const bi = priority.indexOf(b.title);
