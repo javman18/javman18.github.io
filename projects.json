@@ -109,6 +109,9 @@
     {
       "title": "Yeltic App",
       "description": "Yeltic App is a modular industrial training and education platform developed by Yeltic for Mexican companies. It enables immersive learning on topics such as workplace safety, equipment maintenance, internal policies, onboarding procedures, and more.",
+       "media": [
+        { "label": "Yeltic app showcase", "url": "Assets/YelticApp/Videos/yeltic-app.gif" }
+      ],
       "details": [
         "The application is available exclusively for mobile devices and is distributed via Google Play and App Store. Its modular architecture leverages Unity Addressables to deliver dynamic content and scenarios tailored to each client."
       ],
@@ -136,6 +139,9 @@
     {
       "title": "TEC: Virtual Factory",
       "description": "Developed by Yeltic for Tecnológico de Monterrey, this industrial training and learning application simulates an interactive factory environment for Industrial Engineering students. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through hands-on simulations in both VR and PC modes.",
+      "media": [
+        { "label": "Factory walkthrough", "url": "Assets/Tec/Videos/tec.gif" }
+      ],
       "details": [
       "Industrial training simulation for Industrial Engineering education, available in both VR headsets and standard PCs.",
       "The platform stores each student’s progress and test results in a secure server, enabling instructors to review performance and adjust training accordingly."

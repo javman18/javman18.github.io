@@ -277,6 +277,30 @@ function renderTeamProjects(projects) {
             </div>
           ` : ''}
 
+          ${(proj.media && proj.media.length) ? `
+            <div class="rounded-xl border border-gray-800 bg-gray-950/30 p-4">
+              <div class="flex items-center justify-between">
+                <p class="text-gray-100 font-semibold">Media</p>
+                <button onclick="toggleSection('teammedia${idx}')"
+                        class="text-xs px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700">
+                  Toggle
+                </button>
+              </div>
+              <div id="teammedia${idx}" class="mt-4 grid md:grid-cols-2 gap-4">
+                ${proj.media.map(m => `
+                  <button class="text-left rounded-xl border border-gray-800 bg-gray-900/30 hover:bg-gray-900/60 overflow-hidden transition"
+                          onclick="openMedia('${(m.label || proj.title || '').replace(/'/g,"\\'")}', '${m.url}')">
+                    <img src="${m.url}" class="w-full h-40 object-cover border-b border-gray-800" alt="${m.label}">
+                    <div class="p-3">
+                      <p class="text-sm font-semibold text-gray-100">${m.label || ""}</p>
+                      <p class="text-xs text-gray-400 mt-1">Click to expand</p>
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
           <div class="rounded-xl border border-gray-800 bg-gray-950/30 p-4">
             <p class="text-gray-100 font-semibold mb-2">Key Responsibilities</p>
             ${responsibilities.length ? `
