@@ -108,7 +108,7 @@
   "teamProjects": [
     {
       "title": "Yeltic App",
-      "description": "Yeltic App is a modular educational and training platform developed by Yeltic for Mexican companies. It enables immersive learning on topics such as workplace safety, equipment maintenance, internal policies, onboarding procedures, and more. Built entirely in Unity, the app is designed to be flexible so that each company can deploy custom training content through downloadable modules.",
+      "description": "Yeltic App is a modular industrial training and education platform developed by Yeltic for Mexican companies. It enables immersive learning on topics such as workplace safety, equipment maintenance, internal policies, onboarding procedures, and more.",
       "details": [
         "The application is available exclusively for mobile devices and is distributed via Google Play and App Store. Its modular architecture leverages Unity Addressables to deliver dynamic content and scenarios tailored to each client."
       ],
@@ -135,10 +135,12 @@
     },
     {
       "title": "TEC: Virtual Factory",
-      "description": "Developed by Yeltic for Tecnológico de Monterrey, this VR and PC-mode application simulates an interactive factory environment for Industrial Engineering students. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through immersive learning.",
+      "description": "Developed by Yeltic for Tecnológico de Monterrey, this industrial training and learning application simulates an interactive factory environment for Industrial Engineering students. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through hands-on simulations in both VR and PC modes.",
       "details": [
-        "The platform stores each student’s progress and test results in a secure server, enabling instructors to review performance and adjust training accordingly. The application can run in both VR headsets and PCs, making it accessible for different hardware setups."
-      ],
+      "Industrial training simulation for Industrial Engineering education, available in both VR headsets and standard PCs.",
+      "The platform stores each student’s progress and test results in a secure server, enabling instructors to review performance and adjust training accordingly."
+      ]
+      ,
       "responsibilities": [
         "Implemented the student login system with secure encryption to protect personal data during storage and transmission.",
         "Developed PC-mode movement and interaction logic to mimic VR navigation using keyboard and mouse.",
@@ -195,10 +197,24 @@
     "Implemented caching and document refresh workflows to keep the index updated as source content changes.",
     "Added guardrails for safe responses and fallback behaviors when relevant context is missing or low-confidence."
   ]
+},
+{
+  "title": "Bimbo: Professional Driver Workshop",
+"description": "Professional Driver Workshop is an industrial training platform developed for Grupo Bimbo to educate professional drivers on safety regulations, defensive driving practices, and operational standards. The project is divided into two synchronized systems: a Master PC application for instructor-led sessions and a Tablet application for hands-on interactive participation.",
+  "details": [
+    "Industrial training solution focused on transportation safety and corporate driving standards.",
+    "Dual-system architecture: Master (PC) controls presentation flow while Tablet app enables participant interaction.",
+    "Interactive presentation system combining dynamic slides with embedded 3D simulations.",
+    "Includes real-time interactive modules such as speed calculation exercises and destination-time simulations."
+  ],
+  "responsibilities": [
+    "Extended and maintained the slide-based presentation system by modifying and managing a SQL database that dynamically feeds content into the application.",
+    "Developed and maintained the internal slide editor tool to allow structured content creation and modification.",
+    "Ensured responsive behavior of the editor and presentation system across PC and tablet environments.",
+    "Integrated multimedia assets (GIFs, images, formatted text) into slides with dynamic rendering inside Unity.",
+    "Implemented interactive 3D modules to simulate real-world driving scenarios (e.g., speed measurement and time-to-destination exercises).",
+    "Collaborated with instructional designers to align technical implementation with corporate safety standards."
+  ]
 }
-
-
-    
-
   ]
 }
