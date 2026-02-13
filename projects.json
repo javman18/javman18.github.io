@@ -220,6 +220,13 @@
     "Interactive presentation system combining dynamic slides with embedded 3D simulations.",
     "Includes real-time interactive modules such as speed calculation exercises and destination-time simulations."
   ],
+    "media": [
+    {
+      "label": "Drive simulation",
+      "url": "Assets/BIMBO/Videos/bimbo.mp4",
+      "type": "video"
+    }
+  ],
   "responsibilities": [
     "Extended and maintained the slide-based presentation system by modifying and managing a SQL database that dynamically feeds content into the application.",
     "Developed and maintained the internal slide editor tool to allow structured content creation and modification.",
