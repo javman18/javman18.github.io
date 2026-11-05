@@ -140,7 +140,7 @@
       "title": "TEC: Virtual Factory",
       "description": "Developed by Yeltic for Tecnológico de Monterrey, this industrial training and learning application simulates an interactive factory environment for Industrial Engineering students. It allows users to explore production lines, complete procedural tasks, and reinforce theoretical knowledge through hands-on simulations in both VR and PC modes.",
       "media": [
-        { "label": "Factory walkthrough", "url": "Assets/Tec/Videos/tec.gif" }
+        { "label": "Factory walkthrough", "url": "Assets/Tec/Videos/simulador_planta_loop.mp4", "type": "video" }
       ],
       "details": [
       "Industrial training simulation for Industrial Engineering education, available in both VR headsets and standard PCs.",
@@ -162,7 +162,7 @@
       "media": [
     {
       "label": "VR Experience Demo",
-      "url": "Assets/ILCE/Videos/ilce.mp4",
+      "url": "Assets/ILCE/Videos/vr_educativo_loop.mp4",
       "type": "video"
     }
   ],
@@ -223,7 +223,7 @@
     "media": [
     {
       "label": "Drive simulation",
-      "url": "Assets/BIMBO/Videos/bimbo.mp4",
+      "url": "Assets/BIMBO/Videos/conductor_profesional_loop.mp4",
       "type": "video"
     }
   ],
