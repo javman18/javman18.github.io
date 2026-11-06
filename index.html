@@ -142,6 +142,12 @@
     .about-row .mono { font-size: 14px; color: var(--muted); }
     .about-row p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-2); }
 
+    /* Game */
+    .game-panel { display: flex; flex-direction: column; gap: 24px; }
+    .game-panel .section-note { max-width: 720px; }
+    .game-wrap { border: 1px solid var(--line-3); border-radius: 20px; overflow: hidden; background: var(--surface-2); box-shadow: 0 40px 80px rgba(0,0,0,.4); }
+    .game-wrap canvas { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; cursor: crosshair; user-select: none; -webkit-user-select: none; }
+
     /* Contact */
     .contact { padding-top: 96px; padding-bottom: 120px; }
     .contact-box { border: 1px solid var(--line-3); border-radius: 28px; background-color: var(--surface-2); padding: clamp(32px, 6vw, 80px); display: flex; flex-direction: column; gap: 36px; }
@@ -204,7 +210,8 @@
         <a href="#reel"><span class="acc">02.</span> Reel</a>
         <a href="#work"><span class="acc">03.</span> Work</a>
         <a href="#about"><span class="acc">04.</span> About</a>
-        <a href="#contact"><span class="acc">05.</span> Contact</a>
+        <a href="#play"><span class="acc">05.</span> Play</a>
+        <a href="#contact"><span class="acc">06.</span> Contact</a>
       </div>
       <a href="#contact" class="btn btn-primary btn-pill">Let's talk</a>
     </nav>
@@ -388,10 +395,44 @@
       </div>
     </section>
 
+    <!-- PLAY -->
+    <section id="play" class="section wrap">
+      <div class="section-head">
+        <div class="section-title">
+          <span class="eyebrow">05 — Play</span>
+          <h2>Take a break.</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Choose a game">
+          <button type="button" class="filter" data-game="bug" aria-pressed="true">Bug Invaders</button>
+          <button type="button" class="filter" data-game="zombie" aria-pressed="false">Zombie XR</button>
+        </div>
+      </div>
+
+      <div class="game-panel" data-panel="bug">
+        <p class="section-note">
+          Bugs are invading prod. Catch <span class="mono acc">TEST</span> for a shield,
+          <span class="mono acc">HOTFIX</span> to clear the board, and shoot the memory leak before it grows.
+        </p>
+        <div id="bugWrap" class="game-wrap">
+          <canvas id="bugGame" aria-label="Bug Invaders mini game"></canvas>
+        </div>
+      </div>
+
+      <div class="game-panel hidden" data-panel="zombie">
+        <p class="section-note">
+          Survive the waves. Zombies hunt you with steering behaviors (seek + separation), the same technique
+          behind my RTS Agent Generator. Press <span class="mono acc">V</span> to see their vectors.
+        </p>
+        <div id="zombieWrap" class="game-wrap">
+          <canvas id="zombieGame" aria-label="Zombie XR Survival mini game"></canvas>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact wrap">
       <div class="contact-box dots">
-        <span class="eyebrow">05 — Contact</span>
+        <span class="eyebrow">06 — Contact</span>
         <h2>Let's build<br>something<span class="acc">.</span></h2>
 <pre class="terminal"><span class="acc">javier@portfolio</span>:~$ ./contact
 &gt; Email:   javierfm.dev@gmail.com
@@ -426,5 +467,7 @@
   </div>
 
   <script src="./main.js"></script>
+  <script src="./bug-invaders.js"></script>
+  <script src="./zombie-xr.js"></script>
 </body>
 </html>

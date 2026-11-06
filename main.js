@@ -142,10 +142,21 @@ function renderProjects() {
 
 function setFilter(filter) {
   currentFilter = filter;
-  document.querySelectorAll(".filter").forEach(b => {
+  document.querySelectorAll("[data-filter]").forEach(b => {
     b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
   });
   renderProjects();
+}
+
+// --- Game tabs ---
+// Hiding a panel also pauses its game (each game pauses itself when its canvas leaves view).
+function setGameTab(game) {
+  document.querySelectorAll("[data-game]").forEach(b => {
+    b.setAttribute("aria-pressed", String(b.dataset.game === game));
+  });
+  document.querySelectorAll(".game-panel").forEach(p => {
+    p.classList.toggle("hidden", p.dataset.panel !== game);
+  });
 }
 
 // --- Project modal ---
@@ -233,7 +244,10 @@ document.addEventListener("click", (e) => {
   const open = e.target.closest("[data-open]");
   if (open) return openProject(open.dataset.open);
 
-  const filter = e.target.closest(".filter");
+  const gameTab = e.target.closest("[data-game]");
+  if (gameTab) return setGameTab(gameTab.dataset.game);
+
+  const filter = e.target.closest("[data-filter]");
   if (filter) return setFilter(filter.dataset.filter);
 
   const copy = e.target.closest("[data-copy]");
