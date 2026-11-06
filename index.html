@@ -5,314 +5,425 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Javier Fuente — AI Engineer & Unity/XR Developer</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Inter", "Arial"],
-            mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "monospace"],
-          },
-          boxShadow: {
-            glow: "0 0 0 1px rgba(59,130,246,.25), 0 8px 30px rgba(0,0,0,.35)",
-          }
-        }
-      }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --accent: #C8F560;
+      --bg: #0A0C0F;
+      --surface: #12161B;
+      --surface-2: #0F1318;
+      --line: #1C222A;
+      --line-2: #232A33;
+      --line-3: #2A323D;
+      --text: #EDEFF2;
+      --text-2: #B7C0CC;
+      --muted: #9AA4B1;
+      --faint: #4E5966;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --display: 'Space Grotesk', system-ui, sans-serif;
     }
-  </script>
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; overflow-x: hidden; }
+    a { color: var(--text); text-decoration: none; }
+    a:hover { color: var(--accent); }
+    button { font: inherit; }
+    .hidden { display: none !important; }
+    .acc { color: var(--accent); }
+    .mono { font-family: var(--mono); }
+
+    .dots { background-image: radial-gradient(#252C36 1px, transparent 1px); background-size: 22px 22px; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+
+    /* Nav */
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(10,12,15,.86); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .site-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
+    .logo { font-family: var(--mono); font-weight: 600; font-size: 18px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 28px; font-family: var(--mono); font-size: 14px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 12px; font-weight: 500; font-size: 16px; border: 1px solid var(--line-3); color: var(--text); background: transparent; cursor: pointer; transition: border-color .2s ease, color .2s ease; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+    .btn-primary:hover { color: var(--bg); filter: brightness(1.06); }
+    .btn-pill { min-height: 44px; padding: 0 20px; border-radius: 999px; font-size: 15px; }
+
+    /* Hero */
+    .hero { border-bottom: 1px solid var(--line); }
+    .hero-grid { padding-top: 96px; padding-bottom: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; align-items: center; }
+    .hero-copy { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+    .badge { display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--line-3); border-radius: 999px; background: var(--surface); font-family: var(--mono); font-size: 13px; color: var(--text-2); }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .pulse { animation: pl 1.8s ease-in-out infinite; }
+    @keyframes pl { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
+    .tagline { margin: 0; font-family: var(--mono); font-size: 14px; color: var(--muted); }
+    h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(56px, 8vw, 128px); line-height: .92; letter-spacing: -.04em; }
+    .lead { margin: 0; max-width: 580px; font-size: 20px; line-height: 1.55; color: var(--text-2); }
+    .lead strong { color: var(--text); font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 40px; padding-top: 12px; }
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat-value { font-family: var(--display); font-size: 40px; font-weight: 700; line-height: 1.1; }
+    .stat-label { font-size: 14px; color: var(--muted); }
+
+    .code-wrap { position: relative; min-width: 0; }
+    .code-window { border: 1px solid var(--line-3); border-radius: 18px; background: var(--surface-2); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+    .code-bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #1F262F; background: var(--surface); }
+    .code-bar i { width: 12px; height: 12px; border-radius: 50%; background: #3A434F; }
+    .code-bar span { margin-left: 12px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .code-body { margin: 0; padding: 26px 26px 30px; font-family: var(--mono); font-size: 15px; line-height: 1.85; white-space: pre; overflow-x: auto; color: #D5DBE3; }
+    .ln { color: #6B7685; }
+    .kw { color: #5CC8FF; }
+    .str { color: #FFB86B; }
+    .code-chip { position: absolute; right: -14px; bottom: -22px; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 13px; font-weight: 600; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+
+    /* Marquee */
+    .marquee-strip { border-bottom: 1px solid var(--line); padding: 26px 0; overflow: hidden; }
+    .marquee { display: flex; gap: 56px; width: max-content; animation: mq 38s linear infinite; font-family: var(--display); font-size: 34px; font-weight: 500; color: var(--faint); white-space: nowrap; }
+    @keyframes mq { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+    /* Sections */
+    .section { padding-top: 112px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 48px; }
+    .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .section-title { display: flex; flex-direction: column; gap: 12px; }
+    .eyebrow { font-family: var(--mono); font-size: 14px; color: var(--accent); }
+    h2 { margin: 0; font-family: var(--display); font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+    .section-note { margin: 0; max-width: 440px; font-size: 17px; line-height: 1.6; color: var(--muted); }
+
+    .card { border: 1px solid var(--line-2); border-radius: 20px; background: var(--surface); transition: transform .25s ease, border-color .25s ease; }
+    .card:hover { transform: translateY(-6px); border-color: #4A5563; }
+
+    .bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .bento .card { min-height: 220px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+    .bento .wide { grid-column: span 2; min-height: 260px; }
+    .bento .card.accent { background: var(--accent); color: var(--bg); }
+    .bento .card.accent p { color: #1E2A10; }
+    .bento h3 { margin: 0; font-family: var(--display); font-size: 24px; font-weight: 700; }
+    .bento .wide h3, .bento .accent h3 { font-size: 30px; }
+    .bento p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 520px; }
+    .bento .card-copy { display: flex; flex-direction: column; gap: 8px; }
+
+    /* Reel */
+    .reel { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--line-3); border-radius: 20px; background: var(--surface-2); }
+    .reel iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Projects */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter { min-height: 44px; padding: 0 18px; border-radius: 999px; font-family: var(--mono); font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: var(--text); border: 1px solid var(--line-3); }
+    .filter[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 20px; }
+    .project { border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; }
+    .project-media { position: relative; height: 240px; border-bottom: 1px solid var(--line-2); background-color: var(--surface-2); overflow: hidden; padding: 0; border-left: 0; border-right: 0; border-top: 0; width: 100%; display: block; cursor: pointer; }
+    .project-media img, .project-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; transition: opacity .25s ease; }
+    .project:hover .project-media img, .project:hover .project-media video { opacity: .85; }
+    .project-media-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: space-between; padding: 24px 28px; background: linear-gradient(to top, rgba(15,19,24,.9), rgba(15,19,24,0) 60%); }
+    .project-num { font-family: var(--display); font-size: 120px; font-weight: 700; line-height: .8; color: rgba(237,239,242,.14); }
+    .project-media.empty .project-num { color: #1E252E; }
+    .kind { padding: 8px 12px; border-radius: 8px; background: var(--accent); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 600; text-transform: uppercase; }
+    .project-body { padding: 28px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1; }
+    .project-client { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .project h3 { margin: 0; font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
+    .project-desc { margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-2); }
+    .project-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 6px 12px; border: 1px solid var(--line-3); border-radius: 999px; font-family: var(--mono); font-size: 12px; color: #C9D0D9; }
+    .link-btn { background: none; border: 0; padding: 8px 0; cursor: pointer; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); }
+    .link-btn:hover { text-decoration: underline; }
+
+    /* About */
+    .about-grid { padding-top: 96px; padding-bottom: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 56px; }
+    .about-copy { display: flex; flex-direction: column; }
+    .about-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; padding: 28px 0; border-top: 1px solid var(--line-2); }
+    .about-row:last-child { border-bottom: 1px solid var(--line-2); }
+    .about-row .mono { font-size: 14px; color: var(--muted); }
+    .about-row p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-2); }
+
+    /* Contact */
+    .contact { padding-top: 96px; padding-bottom: 120px; }
+    .contact-box { border: 1px solid var(--line-3); border-radius: 28px; background-color: var(--surface-2); padding: clamp(32px, 6vw, 80px); display: flex; flex-direction: column; gap: 36px; }
+    .contact-box h2 { font-size: clamp(48px, 8vw, 120px); letter-spacing: -.04em; line-height: .92; }
+    .terminal { margin: 0; font-family: var(--mono); font-size: 16px; line-height: 1.9; color: var(--text-2); background: var(--bg); border: 1px solid var(--line-2); border-radius: 14px; padding: 20px 24px; overflow-x: auto; white-space: pre; }
+    .contact .btn { min-height: 56px; border-radius: 14px; font-size: 17px; }
+    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 40px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+    /* Project modal */
+    .modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px; background: rgba(5,6,8,.8); backdrop-filter: blur(6px); overflow-y: auto; }
+    .modal-panel { width: 100%; max-width: 900px; border: 1px solid var(--line-3); border-radius: 22px; background: var(--surface); overflow: hidden; }
+    .modal-head { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; border-bottom: 1px solid var(--line-2); background: var(--surface); z-index: 1; }
+    .modal-head h3 { margin: 0; font-family: var(--display); font-size: 24px; font-weight: 700; }
+    .modal-body { padding: 24px; display: flex; flex-direction: column; gap: 28px; }
+    .modal-body h4 { margin: 0 0 12px; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
+    .modal-body p, .modal-body li { font-size: 16px; line-height: 1.65; color: var(--text-2); }
+    .modal-body p { margin: 0 0 10px; }
+    .modal-body ul { margin: 0; padding-left: 20px; }
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 16px; }
+    .media-item { margin: 0; border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; background: var(--surface-2); }
+    .media-item img, .media-item video { display: block; width: 100%; height: auto; }
+    .media-item figcaption { padding: 10px 14px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+    .code-block { border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; background: var(--bg); margin-bottom: 12px; }
+    .code-block-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line-2); font-family: var(--mono); font-size: 13px; }
+    .code-block pre { margin: 0; padding: 16px; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: #D5DBE3; }
+    .small-btn { min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line-3); background: transparent; color: var(--text); font-family: var(--mono); font-size: 12px; cursor: pointer; }
+    .small-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .bento { grid-template-columns: minmax(0, 1fr); }
+      .bento .wide { grid-column: auto; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding-left: 16px; padding-right: 16px; }
+      .nav-links { gap: 16px; font-size: 13px; }
+      .hero-grid { padding-top: 56px; padding-bottom: 64px; }
+      .section { padding-top: 80px; }
+      .code-body { font-size: 13px; padding: 20px; }
+      .code-chip { right: 8px; }
+      .about-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+      .project-num { font-size: 88px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .marquee, .pulse { animation: none; }
+      .card, .btn { transition: none; }
+      .card:hover { transform: none; }
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-gray-100 font-sans">
-  <div class="max-w-5xl mx-auto px-6 py-10">
+<body>
+
+  <!-- NAV -->
+  <header class="site-header">
+    <nav class="site-nav wrap">
+      <a href="#top" class="logo">jf<span class="acc">.</span>dev</a>
+      <div class="nav-links">
+        <a href="#stack"><span class="acc">01.</span> Stack</a>
+        <a href="#reel"><span class="acc">02.</span> Reel</a>
+        <a href="#work"><span class="acc">03.</span> Work</a>
+        <a href="#about"><span class="acc">04.</span> About</a>
+        <a href="#contact"><span class="acc">05.</span> Contact</a>
+      </div>
+      <a href="#contact" class="btn btn-primary btn-pill">Let's talk</a>
+    </nav>
+  </header>
+
+  <main>
 
     <!-- HERO -->
-    <header class="mb-10">
-      <div class="rounded-3xl border border-gray-800 bg-gray-900/40 backdrop-blur-xl shadow-glow p-7 md:p-10 relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl"></div>
-        <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <section id="top" class="hero dots">
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <div class="badge"><span class="badge-dot pulse"></span>Open to new roles · CDMX / Edo. Méx.</div>
 
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative">
-          <div>
-            <p class="text-sm text-gray-400 mb-2">
-              AI Engineer · Unity / XR Tech Lead · Mobile Developer
-            </p>
+          <p class="tagline">AI Engineer · Unity / XR Tech Lead · Mobile Developer</p>
 
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-              Javier <span class="text-blue-400">Fuente</span>
-            </h1>
+          <h1>Javier<br>Fuente<span class="acc">_</span></h1>
 
-            <p class="mt-4 text-gray-300 leading-relaxed max-w-2xl">
-              I build real-time XR and mobile products in Unity — and the AI tooling around them.
-              I've shipped a VR exposure-therapy tool for SEDENA, a virtual factory simulation for Tec de Monterrey,
-              and a production WhatsApp RAG chatbot. My niche is the overlap: real-time product engineering plus applied AI.
-            </p>
+          <p class="lead">
+            I build <strong>real-time XR and mobile products in Unity</strong> — and the AI tooling around them.
+            I've shipped a VR exposure-therapy tool for SEDENA, a virtual factory simulation for Tec de Monterrey,
+            and a production WhatsApp RAG chatbot. My niche is the overlap: real-time product engineering plus applied AI.
+          </p>
 
-            <!-- QUICK HIGHLIGHTS -->
-            <div class="mt-5 flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">C# / .NET</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Unity</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">XR (VR/AR/Quest)</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Python</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">LLMs</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">RAG</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">LLM Evaluation</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Mobile (Android/iOS)</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Firebase</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Performance Optimization</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">QA / Testing</span>
-              <span class="px-3 py-1 rounded-full text-xs border border-gray-700 bg-gray-900/60 text-gray-200">Git</span>
-            </div>
-
-            <!-- CTA -->
-            <div class="mt-6 flex flex-wrap gap-3">
-              <button class="tab-btn px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition border border-blue-500"
-                      data-tab="demo-reel">
-                Watch Demo Reel
-              </button>
-
-              <a href="Assets/CV_Javier_Fuente.pdf" target="_blank" rel="noopener"
-                 class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
-                Download CV
-              </a>
-
-              <a href="mailto:javierfm.dev@gmail.com"
-                 class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
-                Email Me
-              </a>
-
-              <a href="https://www.javierfuente.com/"
-                 class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 transition">
-                Blog
-              </a>
-            </div>
+          <div class="actions">
+            <a href="#work" class="btn btn-primary">See my work
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#reel" class="btn">Watch Demo Reel</a>
+            <a href="Assets/CV_Javier_Fuente.pdf" target="_blank" rel="noopener" class="btn">Download CV</a>
           </div>
 
-          <!-- MINI CARD -->
-          <div class="md:w-[320px] rounded-2xl border border-gray-800 bg-gray-950/40 p-5">
-            <p class="text-xs text-gray-400">Currently focused on</p>
-
-            <p class="mt-2 text-sm text-gray-200 leading-relaxed">
-              Building evaluation frameworks for LLM agents and scalable Unity architectures for XR and mobile training products.
-            </p>
-
-            <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
-              <div class="rounded-xl border border-gray-800 bg-gray-900/40 p-3">
-                <p class="text-gray-400">Platforms</p>
-                <p class="font-semibold text-gray-100 mt-1">Quest · PC · Mobile</p>
-              </div>
-
-              <div class="rounded-xl border border-gray-800 bg-gray-900/40 p-3">
-                <p class="text-gray-400">Strength</p>
-                <p class="font-semibold text-gray-100 mt-1">Product-minded engineering</p>
-              </div>
-            </div>
+          <div class="stats">
+            <div class="stat"><span class="stat-value" id="statTeam">—</span><span class="stat-label">team products</span></div>
+            <div class="stat"><span class="stat-value" id="statSolo">—</span><span class="stat-label">solo projects</span></div>
+            <div class="stat"><span class="stat-value">Quest · PC · Mobile</span><span class="stat-label">platforms</span></div>
           </div>
         </div>
 
-      </div>
-    </header>
-
-    <!-- TABS -->
-    <nav class="mb-8 flex flex-wrap gap-2 items-center">
-      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
-              data-tab="about">
-        About
-      </button>
-
-      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
-              data-tab="demo-reel">
-        Demo Reel
-      </button>
-
-      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
-              data-tab="projects">
-        Solo Projects
-      </button>
-
-      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
-              data-tab="teamprojects">
-        Team Projects
-      </button>
-
-      <button class="tab-btn px-4 py-2 rounded-xl bg-gray-800 text-gray-200 hover:bg-gray-700 transition border border-gray-700"
-              data-tab="contact">
-        Contact
-      </button>
-    </nav>
-
-    <!-- ABOUT -->
-    <section id="about" class="tab-content hidden">
-      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
-        <h2 class="text-2xl font-bold text-blue-300 mb-3">About Me</h2>
-
-        <p class="text-gray-300 leading-relaxed">
-          I’m José Javier Fuente Meza, a software developer focused on interactive, real-time, and responsive digital applications.
-          I work primarily with C#/.NET, building systems that feel production-ready: clear UI flows, responsive layouts,
-          scalable architecture, and performance-minded implementations across mobile and desktop.
-          Professionally, I’ve delivered educational, therapeutic, and industrial training products, often using Unity/XR,
-          including end-to-end feature development, technical setup, functional testing, documentation, and deployment workflows.
-          I also have practical front-end/web foundations through responsive UI work, HTML/JavaScript, and web-oriented training.
-          In parallel, I build Python AI tooling, including RAG assistants and automated evaluation, to reduce iteration time and increase reliability.
-          I’m looking for roles where I can combine strong engineering fundamentals with real product impact.
-        </p>
-
-        <div class="mt-8">
-          <div class="flex items-center justify-between gap-4 mb-4">
-            <h3 class="text-lg font-semibold text-gray-100">Featured Projects</h3>
-            <p class="text-sm text-gray-400">Quick selection for recruiters</p>
+        <div class="code-wrap">
+          <div class="code-window">
+            <div class="code-bar"><i></i><i></i><i></i><span>Javier.cs</span></div>
+<pre class="code-body"><span class="ln">01</span>  <span class="kw">public class</span> <span class="acc">Javier</span> : Engineer {
+<span class="ln">02</span>    <span class="kw">string</span>[] stack = {
+<span class="ln">03</span>      <span class="str">"Unity"</span>, <span class="str">"C#"</span>, <span class="str">"XR"</span>,
+<span class="ln">04</span>      <span class="str">"Python"</span>, <span class="str">"LLMs"</span>, <span class="str">"RAG"</span>
+<span class="ln">05</span>    };
+<span class="ln">06</span>
+<span class="ln">07</span>    <span class="kw">void</span> <span class="acc">Update</span>() {
+<span class="ln">08</span>      BuildRealtime(<span class="str">"XR"</span>, <span class="str">"Mobile"</span>);
+<span class="ln">09</span>      Evaluate(llmAgents);
+<span class="ln">10</span>      Ship();  <span class="ln">// measured, not guessed</span>
+<span class="ln">11</span>    }
+<span class="ln">12</span>  }</pre>
           </div>
+          <div class="code-chip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            XR + Applied AI
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div id="featured" class="grid md:grid-cols-3 gap-4"></div>
+    <!-- MARQUEE -->
+    <div class="marquee-strip" aria-label="Technologies">
+      <div class="marquee" id="marquee"></div>
+    </div>
+
+    <!-- STACK -->
+    <section id="stack" class="section wrap">
+      <div class="section-head">
+        <div class="section-title">
+          <span class="eyebrow">01 — Stack</span>
+          <h2>Real-time products,<br>applied AI.</h2>
+        </div>
+        <p class="section-note">
+          <span class="mono acc">Currently focused on:</span>
+          building evaluation frameworks for LLM agents and scalable Unity architectures for XR and mobile training products.
+        </p>
+      </div>
+
+      <div class="bento">
+        <div class="card wide">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+          <div class="card-copy">
+            <h3>Unity &amp; XR</h3>
+            <p>VR, AR and CAVE experiences in C#/.NET for Quest, PC and mobile: therapeutic, educational and industrial training products, built on scalable architecture.</p>
+          </div>
+        </div>
+
+        <div class="card accent">
+          <span class="mono" style="font-size: 13px; font-weight: 600">EVAL_MODE = ON</span>
+          <div class="card-copy">
+            <h3>Applied AI</h3>
+            <p>Python tooling with LLMs: RAG assistants in production and evaluation frameworks that measure output quality.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+          <div class="card-copy">
+            <h3>Mobile</h3>
+            <p>Android and iOS builds with stable UX flows and performance-first delivery.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg>
+          <div class="card-copy">
+            <h3>Firebase &amp; Backend</h3>
+            <p>Cloud and backend integration for content, users and data behind real-time apps.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <div class="card-copy">
+            <h3>QA &amp; Performance</h3>
+            <p>Functional testing, documentation and optimization so products hold up on real devices.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- DEMO REEL -->
-    <section id="demo-reel" class="tab-content hidden">
-      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
-        <h2 class="text-2xl font-bold text-blue-300 mb-4">Demo Reel</h2>
+    <section id="reel" class="section wrap">
+      <div class="section-head">
+        <div class="section-title">
+          <span class="eyebrow">02 — Demo Reel</span>
+          <h2>See it running.</h2>
+        </div>
+      </div>
+      <div class="reel">
+        <iframe
+          src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          allowfullscreen
+          loading="lazy"
+          title="Demo Reel"></iframe>
+      </div>
+    </section>
 
-        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-xl border border-gray-800">
-          <iframe
-            src="https://player.vimeo.com/video/1084409482?h=9acf2a9840&badge=0&autopause=0&player_id=0&app_id=58479"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            allowfullscreen
-            title="DemoReel"
-            class="absolute top-0 left-0 w-full h-full">
-          </iframe>
+    <!-- WORK -->
+    <section id="work" class="section wrap">
+      <div class="section-head">
+        <div class="section-title">
+          <span class="eyebrow">03 — Work</span>
+          <h2>Selected work</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter" data-filter="team" aria-pressed="false">Team</button>
+          <button type="button" class="filter" data-filter="solo" aria-pressed="false">Solo</button>
+        </div>
+      </div>
+      <div id="projectGrid" class="project-grid"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-grid wrap">
+      <div class="section-title">
+        <span class="eyebrow">04 — About</span>
+        <h2>Engineering with<br>product impact</h2>
+      </div>
+      <div class="about-copy">
+        <div class="about-row">
+          <span class="mono">Who</span>
+          <p>I'm José Javier Fuente Meza, a software developer focused on interactive, real-time, and responsive digital applications, working primarily with C#/.NET.</p>
+        </div>
+        <div class="about-row">
+          <span class="mono">Shipped</span>
+          <p>Educational, therapeutic, and industrial training products, often in Unity/XR: end-to-end feature development, technical setup, functional testing, documentation, and deployment workflows.</p>
+        </div>
+        <div class="about-row">
+          <span class="mono">AI</span>
+          <p>Python AI tooling, including RAG assistants and automated evaluation, to reduce iteration time and increase reliability.</p>
+        </div>
+        <div class="about-row">
+          <span class="mono">Looking for</span>
+          <p>Roles where I can combine strong engineering fundamentals with real product impact.</p>
         </div>
       </div>
     </section>
 
-    <!-- SOLO PROJECTS -->
-    <section id="projects" class="tab-content hidden"></section>
-
-    <!-- TEAM PROJECTS -->
-    <section id="teamprojects" class="tab-content hidden"></section>
-
     <!-- CONTACT -->
-    <section id="contact" class="tab-content hidden">
-      <div class="rounded-2xl border border-gray-800 bg-gray-900/40 backdrop-blur-lg shadow-glow p-6">
-        <h2 class="text-2xl font-bold text-blue-300 mb-4">Contact</h2>
-
-        <p class="mb-4 text-gray-300">Let's connect.</p>
-
-        <ul class="text-gray-200 space-y-4">
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-            <span>
-              Email:
-              <a href="mailto:javierfm.dev@gmail.com" class="text-blue-400 underline">
-                javierfm.dev@gmail.com
-              </a>
-            </span>
-          </li>
-
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-            <span>
-              Discord:
-              <span class="bg-gray-950/60 px-2 py-1 rounded text-blue-300 font-mono select-all">
-                javierfuente
-              </span>
-            </span>
-          </li>
-        </ul>
+    <section id="contact" class="contact wrap">
+      <div class="contact-box dots">
+        <span class="eyebrow">05 — Contact</span>
+        <h2>Let's build<br>something<span class="acc">.</span></h2>
+<pre class="terminal"><span class="acc">javier@portfolio</span>:~$ ./contact
+&gt; Email:   javierfm.dev@gmail.com
+&gt; Discord: javierfuente</pre>
+        <div class="actions">
+          <a href="mailto:javierfm.dev@gmail.com" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            javierfm.dev@gmail.com
+          </a>
+          <a href="https://github.com/javman18" target="_blank" rel="noopener" class="btn">GitHub</a>
+          <a href="https://www.javierfuente.com/" class="btn">Blog</a>
+          <a href="Assets/CV_Javier_Fuente.pdf" target="_blank" rel="noopener" class="btn">CV</a>
+        </div>
       </div>
+      <footer>
+        <span>© 2026 José Javier Fuente Meza</span>
+        <span>Built with HTML. <span class="acc">// TODO: port it to Unity</span></span>
+      </footer>
     </section>
 
-  </div>
+  </main>
 
-  <!-- MODAL -->
-  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/70 p-4 z-50">
-    <div class="w-full max-w-4xl rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden">
-      <div class="flex items-center justify-between px-4 py-3 border-b border-gray-800">
-        <p id="modalTitle" class="text-sm text-gray-200 font-semibold">Media</p>
-
-        <button id="modalClose" class="px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100">
-          Close
-        </button>
+  <!-- PROJECT MODAL -->
+  <div id="projectModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="projectModalTitle"></h3>
+        <button type="button" class="small-btn" id="projectModalClose">Close</button>
       </div>
-
-      <div class="p-4">
-        <img id="modalImg" src="" alt="" class="w-full rounded-xl border border-gray-800" />
-      </div>
+      <div class="modal-body" id="projectModalBody"></div>
     </div>
   </div>
-
-  <script>
-    // Tabs
-    function setActiveTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(sec => sec.classList.add('hidden'));
-      document.getElementById(tabId)?.classList.remove('hidden');
-
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
-        b.classList.add('bg-gray-800', 'text-gray-200', 'border-gray-700');
-      });
-
-      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-
-      if (btn) {
-        btn.classList.remove('bg-gray-800', 'text-gray-200', 'border-gray-700');
-        btn.classList.add('bg-blue-600', 'text-white', 'border-blue-500');
-      }
-    }
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => setActiveTab(btn.dataset.tab));
-    });
-
-    setActiveTab('about');
-
-    // Modal
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalClose = document.getElementById('modalClose');
-
-    window.openMedia = function(title, url) {
-      modalTitle.textContent = title || "Media";
-      modalImg.src = url;
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    };
-
-    function closeModal() {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      modalImg.src = "";
-    }
-
-    modalClose.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    // Copy code helper, used by main.js UI
-    window.copyCode = async function(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      const text = el.innerText;
-      await navigator.clipboard.writeText(text);
-
-      const btn = document.querySelector(`[data-copy="${id}"]`);
-
-      if (btn) {
-        const old = btn.innerText;
-        btn.innerText = "Copied!";
-        setTimeout(() => btn.innerText = old, 900);
-      }
-    };
-  </script>
 
   <script src="./main.js"></script>
 </body>
