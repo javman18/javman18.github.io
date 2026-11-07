@@ -88,6 +88,7 @@ const TEAM_PRIORITY = [
   "TIST: WhatsApp RAG Chatbot",
   "LLM Personality Evaluation Framework",
   "Bimbo: Professional Driver Workshop",
+  "Cordonela: Adaptive Clothing E-commerce",
   "Yeltic App",
   "ILCE: We Are the Future",
 ];
