@@ -256,7 +256,7 @@
     "Redesigned the catalog, product pages and customer account flows based on UX reviews with the client.",
     "Developed custom PHP features in the theme: color-based galleries, automatic breadcrumbs, size guide links, account greeting and Spanish transactional emails.",
     "Improved mobile PageSpeed on product pages from 4 to ~60 and removed layout shift (CLS 0) through page caching, conditional asset loading and server-rendered UI.",
-    "Built a low-impact cache preloader and diagnosed server outages caused by an AI crawler, blocking it with a Cloudflare WAF rule.",
+    "Built a low-impact cache preloader and diagnosed server outages caused by Meta's web crawler, blocking it with a Cloudflare WAF rule.",
     "Set up GA4 + GTM e-commerce tracking (view_item to purchase), lead and WhatsApp events, and Meta Pixel via Meta for WooCommerce.",
     "Configured Stripe and PayPal payments in production and coordinated launch testing with the client."
   ]
