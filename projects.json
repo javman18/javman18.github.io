@@ -197,6 +197,9 @@
     {
   "title": "TIST: WhatsApp RAG Chatbot",
   "description": "TIST: WhatsApp RAG Chatbot is a production-oriented conversational assistant integrated with WhatsApp, designed to answer user questions using Retrieval-Augmented Generation (RAG). The system grounds responses on internal documents and curated knowledge sources to reduce hallucinations and provide consistent, context-aware answers.",
+  "media": [
+    { "label": "WhatsApp demo", "url": "Assets/TIST/Videos/tist_chatbot_loop.mp4", "type": "video" }
+  ],
   "details": [
     "WhatsApp-based conversational interface for real users (customer/support-style flows).",
     "RAG pipeline using FAISS as the vector store for fast similarity search over embedded chunks.",
